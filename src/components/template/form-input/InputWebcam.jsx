@@ -50,7 +50,7 @@ export default function InputWebcam() {
             </Suspense>,
         allowOutsideClick: false,
         showConfirmButton: false
-    }, 'lg',);
+    }, 'fullscreen',);
   }
 
   return (
