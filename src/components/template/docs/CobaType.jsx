@@ -13,7 +13,7 @@ export default function CobaType() {
 
   return (
     <div><Webcam frontCamera={frontCamera}/>
-    {/* <button onClick={switchCamera} className="btn btn-primary">Ubah</button> */}
+    <button onClick={switchCamera} className="btn btn-primary">Ubah</button>
     </div>
   )
 }
