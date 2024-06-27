@@ -13,13 +13,13 @@ const WebCamInput = () => {
   const MySwal = withReactContent(Swal);
 
   const videoConstraints = {
-    width: 480,
-    height: 640,
+    width: { ideal: window.innerWidth },
+    height: { ideal: window.innerHeight },
     facingMode: facingMode,
   };
 
   const captureImage = () => {
-    const imageSrc = webcamRef.current.getScreenshot({ width: 480, height: 640 });
+    const imageSrc = webcamRef.current.getScreenshot();
     setCapturedImage(imageSrc);
     setValue('webcam', imageSrc); // Set value in react-hook-form
   };
@@ -55,6 +55,7 @@ const WebCamInput = () => {
         container: 'webcam-swal-container',
       },
       backdrop: 'rgba(0,0,0,0.9)',
+      heightAuto: false,
     });
   }, []);
 

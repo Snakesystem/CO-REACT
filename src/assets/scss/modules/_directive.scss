@@ -118,7 +118,9 @@
 
 .webcam-video {
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .webcam-controls {
@@ -161,7 +163,6 @@
 .webcam-swal-container {
   padding: 0;
 }
-
 
 @keyframes l12 {
   100% {
