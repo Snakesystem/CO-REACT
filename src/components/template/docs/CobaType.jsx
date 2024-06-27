@@ -1,5 +1,5 @@
-import { Webcam } from '@webcam/react'
 import React, { useState } from 'react'
+import Webcam from 'react-webcam'
 
 export default function CobaType() {
 
@@ -9,11 +9,30 @@ export default function CobaType() {
     setFrontCamera(!frontCamera)
   }
 
-  console.log('frontCamera', frontCamera)
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user"
+  };
 
   return (
-    <div><Webcam frontCamera={frontCamera}/>
-    <button onClick={switchCamera} className="btn btn-primary">Ubah</button>
-    </div>
+    <Webcam
+      audio={false}
+      height={720}
+      screenshotFormat="image/jpeg"
+      width={1280}
+      videoConstraints={videoConstraints}
+    >
+    {({ getScreenshot }) => (
+      <button
+        onClick={() => {
+          const imageSrc = getScreenshot()
+          console.log('firstName', imageSrc)
+        }}
+      >
+        Capture photo
+      </button>
+    )}
+  </Webcam>
   )
 }
