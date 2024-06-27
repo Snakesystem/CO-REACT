@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { BsFillCameraVideoFill, BsFillCameraVideoOffFill, BsFillCameraFill, BsFileEarmarkImageFill } from 'react-icons/bs';
 
 const CameraApp = () => {
   const videoRef = useRef(null);
@@ -52,12 +51,12 @@ const CameraApp = () => {
     canvas.getContext("2d").drawImage(video, 0, 0);
 
     // Resize the image to desired dimensions
-    const resizedCanvas = resizeImage(canvas, 640, 900); // Example: Resize to 640x480
+    const resizedCanvas = resizeImage(canvas, 640, 480); // Example: Resize to 640x480
     const dataUrl = resizedCanvas.toDataURL("image/png");
 
     // Generate random file name
     const fileName = generateRandomFileName();
-    
+
     // Save screenshot to localStorage
     localStorage.setItem(fileName, dataUrl);
 
@@ -71,34 +70,28 @@ const CameraApp = () => {
 
   const resizeImage = (canvas, targetWidth, targetHeight) => {
     const { width, height } = canvas;
-  
+
     // Hitung skala untuk menentukan bagian mana yang akan dipangkas
-    const scale = Math.max(targetWidth / width, targetHeight / height);
-  
+    const scale = Math.min(targetWidth / width, targetHeight / height);
+
     // Hitung ukuran baru setelah scaling
     const scaledWidth = width * scale;
     const scaledHeight = height * scale;
-  
-    // Hitung bagian yang akan dipangkas
-    const cropX = (scaledWidth - targetWidth) / 2;
-    const cropY = (scaledHeight - targetHeight) / 2;
-  
+
     // Buat canvas baru untuk hasil resize dengan ukuran target
     const resizedCanvas = document.createElement("canvas");
     resizedCanvas.width = targetWidth;
     resizedCanvas.height = targetHeight;
-  
-    // Lakukan cropping dan gambar ulang ke canvas baru
+
+    // Lakukan resize ke canvas baru
     resizedCanvas.getContext("2d").drawImage(
       canvas,
-      cropX, cropY, scaledWidth - 2 * cropX, scaledHeight - 2 * cropY, // Bagian yang akan dipangkas
+      0, 0, width, height, // Bagian yang akan digambar dari gambar asli
       0, 0, targetWidth, targetHeight // Bagian yang akan digambar ulang di canvas baru
     );
-  
+
     return resizedCanvas;
   };
-  
-  
 
   const handleLoadScreenshot = (fileName) => {
     const dataUrl = localStorage.getItem(fileName);
@@ -131,7 +124,7 @@ const CameraApp = () => {
           </button>
         )}
         <button onClick={handleChangeCamera} className="btn btn-light">
-        <i className="bi bi-arrow-repeat"></i>
+          <i className="bi bi-arrow-repeat"></i>
         </button>
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>

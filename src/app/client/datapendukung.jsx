@@ -6,7 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import CameraComponent from '../../components/template/docs/InputFileUpload';
 import CameraApp from '../../components/template/docs/InputFileUpload';
-import CobaType from '../../components/template/docs/CobaType';
+import CobaType, { ComponentWeb } from '../../components/template/docs/CobaType';
 
 export default function DataPendukung() {
 
@@ -34,11 +34,11 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                {/* <CameraApp/> */}
+                <CobaType />
+                {/* <ComponentWeb/> */}
               </div>
               <div className="col-md-4">
                 {/* <InputFileUpload/> */}
-                <CobaType/>
               </div>
               <div className="col-md-4">
                 {/* <InputFileUpload/> */}
