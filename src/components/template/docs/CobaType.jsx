@@ -9,6 +9,8 @@ export default function CobaType() {
     setFrontCamera(!frontCamera)
   }
 
+  console.log('frontCamera', frontCamera)
+
   return (
     <div><Webcam frontCamera={frontCamera}/>
     <button onClick={switchCamera} className="btn btn-primary">Ubah</button>
