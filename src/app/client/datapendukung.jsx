@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import CameraComponent from '../../components/template/docs/InputFileUpload';
 import CameraApp from '../../components/template/docs/InputFileUpload';
 import CobaType, { ComponentWeb } from '../../components/template/docs/CobaType';
+import WebCamInput from '../../components/template/docs/WebcamInput';
 
 export default function DataPendukung() {
 
@@ -36,7 +37,7 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <CobaType />
+                <WebCamInput ngModel="SelfieFile"/>
                 {/* <ComponentWeb/> */}
               </div>
               <div className="col-md-4">
@@ -49,6 +50,8 @@ export default function DataPendukung() {
             </div>
           </div>
         </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </FormProvider>
   )
