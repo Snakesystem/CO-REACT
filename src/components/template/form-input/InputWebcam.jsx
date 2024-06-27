@@ -40,9 +40,17 @@ export default function InputWebcam() {
     }
   }, [navigate, camera, showAlert]);
 
-  function handleCameraStop () {
-    console.log('handleCameraStop');
-  }
+  useEffect(() => {
+    // Check if the device has multiple cameras and adjust accordingly
+    navigator.mediaDevices.enumerateDevices().then(devices => {
+      const videoDevices = devices.filter(device => device.kind === 'videoinput');
+      if (videoDevices.length > 1) {
+        setFacingMode(FACING_MODES.USER);
+      } else {
+        setFacingMode(FACING_MODES.ENVIRONMENT);
+      }
+    });
+  }, []);
 
   const handleClick = () => { 
     showAlert({
