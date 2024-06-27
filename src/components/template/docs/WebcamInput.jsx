@@ -12,14 +12,18 @@ const WebCamInput = () => {
   const [facingMode, setFacingMode] = useState('user');
   const MySwal = withReactContent(Swal);
 
-  const videoConstraints = {
-    width: { ideal: window.innerWidth },
-    height: { ideal: window.innerHeight },
-    facingMode: facingMode,
-  };
+  const isMobile = window.innerWidth <= 768;
+
+  const videoConstraints = isMobile
+    ? { facingMode }
+    : {
+        width: 480,
+        height: 640,
+        facingMode,
+      };
 
   const captureImage = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
+    const imageSrc = webcamRef.current.getScreenshot({ width: 480, height: 640 });
     setCapturedImage(imageSrc);
     setValue('webcam', imageSrc); // Set value in react-hook-form
   };
@@ -37,7 +41,7 @@ const WebCamInput = () => {
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
-            className="w-100 webcam-video"
+            className={`webcam-video ${isMobile ? 'mobile' : 'desktop'}`}
           />
           <div className="webcam-controls">
             <button type="button" className="btn btn-primary me-2 webcam-button" onClick={captureImage}>
@@ -56,8 +60,11 @@ const WebCamInput = () => {
       },
       backdrop: 'rgba(0,0,0,0.9)',
       heightAuto: false,
+      width: '100%',
+      padding: 0,
+      margin: 0,
     });
-  }, []);
+  }, [facingMode]);
 
   return (
     <div className="form-group mb-3">
