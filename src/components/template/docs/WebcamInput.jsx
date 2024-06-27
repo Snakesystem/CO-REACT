@@ -1,18 +1,24 @@
 // src/components/WebCamInput.js
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useFormContext, Controller } from 'react-hook-form';
 
-const WebCamInput = ({ ngModel }) => {
+const WebCamInput = () => {
+  const { control, setValue } = useFormContext();
   const webcamRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
-  const { control, setValue } = useFormContext();
   const [facingMode, setFacingMode] = useState('user');
 
+  const videoConstraints = {
+    width: 480,
+    height: 640,
+    facingMode: facingMode,
+  };
+
   const captureImage = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
+    const imageSrc = webcamRef.current.getScreenshot({ width: 480, height: 680 });
     setCapturedImage(imageSrc);
-    setValue(ngModel, imageSrc);
+    setValue('webcam', imageSrc); // Set value in react-hook-form
   };
 
   const toggleFacingMode = () => {
@@ -20,39 +26,43 @@ const WebCamInput = ({ ngModel }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="mb-4">Capture Image</h2>
+    <div className="form-group mb-3">
+      <label htmlFor="webcam" className="form-label">Webcam</label>
       <Controller
-            name={ngModel}
-            control={control}
-            render={({ field }) => (
-                <>
-                <Webcam
-                  audio={false}
-                  ref={webcamRef}
-                  screenshotFormat="image/jpeg"
-                  videoConstraints={{ facingMode }}
-                  className="w-100 mb-3"
-                />
-                <div className="mb-3">
-                  <button type="button" className="btn btn-primary me-2" onClick={captureImage}>Capture</button>
-                  <button type="button" className="btn btn-secondary" onClick={toggleFacingMode}>
-                    Switch Camera
-                  </button>
-                </div>
-                {capturedImage && (
-                  <div className="mb-3">
-                    <img src={capturedImage} alt="Captured" className="img-thumbnail w-100" />
-                  </div>
-                )}
-                <input
-                  type="hidden"
-                  {...field}
-                  value={capturedImage || ''}
-                />
-              </>
+        name="webcam"
+        control={control}
+        render={({ field }) => (
+          <>
+            <div className="webcam-container">
+              <Webcam
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                videoConstraints={videoConstraints}
+                className="w-100 mb-3 webcam-video"
+              />
+              <div className="webcam-controls">
+                <button type="button" className="btn btn-primary me-2 webcam-button" onClick={captureImage}>
+                  <i className="bi bi-camera"></i>
+                </button>
+                <button type="button" className="btn btn-secondary webcam-button" onClick={toggleFacingMode}>
+                  <i className="bi bi-arrow-repeat"></i>
+                </button>
+              </div>
+            </div>
+            {capturedImage && (
+              <div className="mb-3">
+                <img src={capturedImage} alt="Captured" className="img-thumbnail w-100" />
+              </div>
             )}
-          />
+            <input
+              type="hidden"
+              {...field}
+              value={capturedImage || ''}
+            />
+          </>
+        )}
+      />
     </div>
   );
 };

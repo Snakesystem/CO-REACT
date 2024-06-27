@@ -104,6 +104,43 @@
   margin: 0 !important;
 }
 
+/* react-webcam custom style */
+.webcam-container {
+  position: relative;
+}
+
+.webcam-video {
+  width: 100%;
+  height: auto;
+}
+
+.webcam-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.webcam-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.webcam-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
 @keyframes l12 {
   100% {
       transform: rotate(.5turn)

@@ -16,7 +16,7 @@ export default function DataPendukung() {
   const dataPendukung = useForm({
     defaultValues: {
       IDCardFile:"",
-      SelfieFile:"",
+      webcam:"",
       SignatureFile:"",
     },
     resolver: yupResolver(dataPendukungSchema),
@@ -37,7 +37,7 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <WebCamInput ngModel="SelfieFile"/>
+                <WebCamInput ngModel="webcam"/>
                 {/* <ComponentWeb/> */}
               </div>
               <div className="col-md-4">
