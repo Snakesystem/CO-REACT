@@ -16,7 +16,6 @@ export default function InputWebcam() {
     setCamera(dataUri);
   }
 
-
   const switchFacingMode = () => {
     setFacingMode((prevMode) =>
       prevMode === FACING_MODES.USER ? FACING_MODES.ENVIRONMENT : FACING_MODES.USER
@@ -49,11 +48,11 @@ export default function InputWebcam() {
                 <Camera
                     onTakePhoto={handleTakePhoto}
                     idealFacingMode={facingMode}
-                    idealResolution={{ width: 640, height: 480 }}
+                    idealResolution={{width: 480, height: 540}}
                     imageType={IMAGE_TYPES.JPG}
                     imageCompression={0.97}
                     isMaxResolution={true}
-                    isImageMirror={facingMode === FACING_MODES.USER}
+                    // isImageMirror={facingMode === FACING_MODES.USER}
                     isSilentMode={false}
                     isDisplayStartCameraError={true}
                     isFullscreen={false}
