@@ -70,25 +70,25 @@ const CameraApp = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <video
         ref={videoRef}
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
         autoPlay
         muted
       ></video>
-      <div>
-        <button onClick={handlePlay} disabled={isPlaying}>
-          Play
+      <div style={{ position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", zIndex: 1 }}>
+        <button onClick={handlePlay} disabled={isPlaying} className="btn btn-light">
+          <i className="bi bi-camera-video-fill"></i>
         </button>
-        <button onClick={handlePause} disabled={!isPlaying}>
-          Pause
+        <button onClick={handlePause} disabled={!isPlaying} className="btn btn-light">
+          <i className="bi bi-camera-video-off-fill"></i>
         </button>
-        <button onClick={handleScreenshot}>
-          Screenshot
+        <button onClick={handleScreenshot} className="btn btn-light">
+          <i className="bi bi-camera-fill"></i>
         </button>
-        <button onClick={handleChangeCamera}>
-          Change Camera
+        <button onClick={handleChangeCamera} className="btn btn-light">
+          <i className="bi bi-arrow-repeat"></i>
         </button>
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
