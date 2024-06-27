@@ -17,9 +17,11 @@ export default function InputWebcam() {
   }
 
   const switchFacingMode = () => {
-    setFacingMode((prevMode) =>
-      prevMode === FACING_MODES.USER ? FACING_MODES.ENVIRONMENT : FACING_MODES.USER
-    );
+    setFacingMode(FACING_MODES.ENVIRONMENT)
+  };
+
+  const switchFacingModeOk = () => {
+    setFacingMode(FACING_MODES.ENVIRONMENT)
   };
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export default function InputWebcam() {
         html:<Suspense fallback={<LifeLine cla color="#17c1e8" size="large" text="Loading content, please wait..." textColor="#ffffff" />}>
                 <Camera
                     onTakePhoto={handleTakePhoto}
-                    idealFacingMode={facingMode}
+                    idealFacingMode={FACING_MODES.USER}
                     idealResolution={{width: 480, height: 540}}
                     imageType={IMAGE_TYPES.JPG}
                     imageCompression={0.97}
@@ -59,12 +61,15 @@ export default function InputWebcam() {
                     sizeFactor={1}
                 />
                 <button onClick={switchFacingMode}>
-                  Switch to {facingMode === FACING_MODES.USER ? 'Back' : 'Front'} Camera
+                  Switch to BankCamera
+                </button>
+                <button onClick={switchFacingModeOk}>
+                  Switch to Front Camera
                 </button>
             </Suspense>,
         allowOutsideClick: false,
         showConfirmButton: false
-    }, 'fullscreen',);
+    }, 'lg',);
   }
 
   return (
