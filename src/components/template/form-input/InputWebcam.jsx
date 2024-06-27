@@ -16,12 +16,11 @@ export default function InputWebcam() {
     setCamera(dataUri);
   }
 
-  const switchFacingMode = () => {
-    setFacingMode(FACING_MODES.ENVIRONMENT)
-  };
 
-  const switchFacingModeOk = () => {
-    setFacingMode(FACING_MODES.USER)
+  const switchFacingMode = () => {
+    setFacingMode((prevMode) =>
+      prevMode === FACING_MODES.USER ? FACING_MODES.ENVIRONMENT : FACING_MODES.USER
+    );
   };
 
   useEffect(() => {
@@ -40,17 +39,9 @@ export default function InputWebcam() {
     }
   }, [navigate, camera, showAlert]);
 
-  useEffect(() => {
-    // Check if the device has multiple cameras and adjust accordingly
-    navigator.mediaDevices.enumerateDevices().then(devices => {
-      const videoDevices = devices.filter(device => device.kind === 'videoinput');
-      if (videoDevices.length > 1) {
-        setFacingMode(FACING_MODES.USER);
-      } else {
-        setFacingMode(FACING_MODES.ENVIRONMENT);
-      }
-    });
-  }, []);
+  function handleCameraStop () {
+    console.log('handleCameraStop');
+  }
 
   const handleClick = () => { 
     showAlert({
@@ -58,7 +49,7 @@ export default function InputWebcam() {
                 <Camera
                     onTakePhoto={handleTakePhoto}
                     idealFacingMode={facingMode}
-                    idealResolution={{width: 540, height: 480}}
+                    idealResolution={{ width: 640, height: 480 }}
                     imageType={IMAGE_TYPES.JPG}
                     imageCompression={0.97}
                     isMaxResolution={true}
@@ -68,20 +59,13 @@ export default function InputWebcam() {
                     isFullscreen={false}
                     sizeFactor={1}
                 />
+                <button onClick={switchFacingMode}>
+                  Switch to {facingMode === FACING_MODES.USER ? 'Back' : 'Front'} Camera
+                </button>
             </Suspense>,
         allowOutsideClick: false,
-        showConfirmButton: true,
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Back",
-        denyButtonText: `Front`
-    }, 'lg',).then((result) => {
-        if(result.isConfirmed) {
-          setFacingMode(FACING_MODES.ENVIRONMENT)
-        } else if(result.isDenied) {
-          setFacingMode(FACING_MODES.USER)  
-        }
-    });
+        showConfirmButton: false
+    }, 'fullscreen',);
   }
 
   return (
