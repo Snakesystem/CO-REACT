@@ -29,8 +29,6 @@ const CameraApp = () => {
 
     const constraints = {
       video: {
-        width: { min: 1280, ideal: 1920, max: 2560 },
-        height: { min: 720, ideal: 1080, max: 1440 },
         facingMode: useFrontCamera ? "user" : "environment",
       },
     };
@@ -72,24 +70,29 @@ const CameraApp = () => {
   };
 
   return (
-    <div>
-      <video ref={videoRef} width="600" autoPlay muted></video>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <video
+        ref={videoRef}
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        autoPlay
+        muted
+      ></video>
       <div>
-        <button id="btnPlay" onClick={handlePlay} disabled={isPlaying}>
+        <button onClick={handlePlay} disabled={isPlaying}>
           Play
         </button>
-        <button id="btnPause" onClick={handlePause} disabled={!isPlaying}>
+        <button onClick={handlePause} disabled={!isPlaying}>
           Pause
         </button>
-        <button id="btnScreenshot" onClick={handleScreenshot}>
+        <button onClick={handleScreenshot}>
           Screenshot
         </button>
-        <button id="btnChangeCamera" onClick={handleChangeCamera}>
+        <button onClick={handleChangeCamera}>
           Change Camera
         </button>
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
-      <div id="screenshots" ref={screenshotsContainerRef}></div>
+      <div ref={screenshotsContainerRef}></div>
     </div>
   );
 };
