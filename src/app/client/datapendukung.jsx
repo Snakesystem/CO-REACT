@@ -4,6 +4,7 @@ import InputWebcam from '../../components/template/form-input/InputWebcam'
 import InputFileUpload from '../../components/template/form-input/InputFileUpload'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import CameraComponent from '../../components/template/docs/InputFileUpload';
 
 export default function DataPendukung() {
 
@@ -31,13 +32,13 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <InputWebcam/>
+                <CameraComponent/>
               </div>
               <div className="col-md-4">
-                <InputFileUpload/>
+                {/* <InputFileUpload/> */}
               </div>
               <div className="col-md-4">
-                <InputFileUpload/>
+                {/* <InputFileUpload/> */}
               </div>
             </div>
           </div>

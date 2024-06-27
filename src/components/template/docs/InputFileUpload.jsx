@@ -1,23 +1,51 @@
-import React from 'react'
-import Webcam from "react-webcam";
-import { useSweetAlert } from '../../../hooks/useSweetAlert';
+import React, { useState, useEffect } from 'react';
+import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 
-export default function InputFileUpload() {
+const CameraComponent = () => {
+  const [facingMode, setFacingMode] = useState(FACING_MODES.USER);
 
-  const { showAlert } = useSweetAlert()
+  useEffect(() => {
+    // Check if the device has multiple cameras and adjust accordingly
+    navigator.mediaDevices.enumerateDevices().then(devices => {
+      const videoDevices = devices.filter(device => device.kind === 'videoinput');
+      if (videoDevices.length > 1) {
+        setFacingMode(FACING_MODES.USER);
+      } else {
+        setFacingMode(FACING_MODES.ENVIRONMENT);
+      }
+    });
+  }, []);
 
-  const handleClick = () => {
-    showAlert({
-      title: 'Title',
-      html: <Webcam/>,
-      icon: 'success',
-      confirmButtonText: 'Ok'
-    }, 'lg',);
-  }
+  const handleTakePhoto = (dataUri) => {
+    console.log('Foto diambil: ', dataUri);
+  };
+
+  const switchFacingMode = () => {
+    setFacingMode((prevMode) =>
+      prevMode === FACING_MODES.USER ? FACING_MODES.ENVIRONMENT : FACING_MODES.USER
+    );
+  };
 
   return (
     <div>
-      <button onClick={handleClick} className="btn btn-primary">Pencet</button>
+      <Camera
+        onTakePhoto={handleTakePhoto}
+        idealFacingMode={facingMode}
+        idealResolution={{ width: 640, height: 480 }}
+        imageType={IMAGE_TYPES.JPG}
+        imageCompression={0.97}
+        isMaxResolution={true}
+        isImageMirror={facingMode === FACING_MODES.USER}
+        isSilentMode={false}
+        isDisplayStartCameraError={true}
+        isFullscreen={false}
+        sizeFactor={1}
+      />
+      <button onClick={switchFacingMode}>
+        Switch to {facingMode === FACING_MODES.USER ? 'Back' : 'Front'} Camera
+      </button>
     </div>
-  )
-}
+  );
+};
+
+export default CameraComponent;
