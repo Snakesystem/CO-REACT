@@ -27,6 +27,8 @@ export default function DataPendukung() {
     console.log(data)
   }
 
+  const gmbar = localStorage.getItem('gambar');
+
   return (
     <FormProvider {...dataPendukung}>
       <form noValidate onSubmit={handleSubmit(submitDataPendukung)}>
@@ -38,6 +40,7 @@ export default function DataPendukung() {
                 {/* <ComponentWeb/> */}
               </div>
               <div className="col-md-4">
+                <img src={gmbar} alt="" />
                 {/* <InputFileUpload/> */}
               </div>
               <div className="col-md-4">

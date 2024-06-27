@@ -10,24 +10,24 @@ export default function CobaType() {
   }
 
   const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 480,
+    height: 640,
     facingMode: "user"
   };
 
   return (
     <Webcam
       audio={false}
-      height={720}
+      height={640}
       screenshotFormat="image/jpeg"
-      width={1280}
+      width={480}
       videoConstraints={videoConstraints}
     >
     {({ getScreenshot }) => (
       <button
         onClick={() => {
           const imageSrc = getScreenshot()
-          console.log('firstName', imageSrc)
+          localStorage.setItem('gambar', imageSrc)
         }}
       >
         Capture photo
