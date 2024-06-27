@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 export default function CobaType() {
 
-  const [frontCamera, setFrontCamera] = useState(true)
+  const [frontCamera, setFrontCamera] = useState(false)
 
   const switchCamera = () => {
     setFrontCamera(!frontCamera)
@@ -13,7 +13,7 @@ export default function CobaType() {
 
   return (
     <div><Webcam frontCamera={frontCamera}/>
-    <button onClick={switchCamera} className="btn btn-primary">Ubah</button>
+    {/* <button onClick={switchCamera} className="btn btn-primary">Ubah</button> */}
     </div>
   )
 }
