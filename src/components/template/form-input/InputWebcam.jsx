@@ -21,7 +21,7 @@ export default function InputWebcam() {
   };
 
   const switchFacingModeOk = () => {
-    setFacingMode(FACING_MODES.ENVIRONMENT)
+    setFacingMode(FACING_MODES.USER)
   };
 
   useEffect(() => {
@@ -49,27 +49,31 @@ export default function InputWebcam() {
         html:<Suspense fallback={<LifeLine cla color="#17c1e8" size="large" text="Loading content, please wait..." textColor="#ffffff" />}>
                 <Camera
                     onTakePhoto={handleTakePhoto}
-                    idealFacingMode={FACING_MODES.USER}
-                    idealResolution={{width: 480, height: 540}}
+                    idealFacingMode={facingMode}
+                    idealResolution={{width: 540, height: 480}}
                     imageType={IMAGE_TYPES.JPG}
                     imageCompression={0.97}
                     isMaxResolution={true}
-                    // isImageMirror={facingMode === FACING_MODES.USER}
+                    isImageMirror={facingMode === FACING_MODES.USER}
                     isSilentMode={false}
                     isDisplayStartCameraError={true}
                     isFullscreen={false}
                     sizeFactor={1}
                 />
-                <button onClick={switchFacingMode}>
-                  Switch to BankCamera
-                </button>
-                <button onClick={switchFacingModeOk}>
-                  Switch to Front Camera
-                </button>
             </Suspense>,
         allowOutsideClick: false,
-        showConfirmButton: false
-    }, 'lg',);
+        showConfirmButton: true,
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Back",
+        denyButtonText: `Front`
+    }, 'lg',).then((result) => {
+        if(result.isConfirmed) {
+          setFacingMode(FACING_MODES.ENVIRONMENT)
+        } else if(result.isDenied) {
+          setFacingMode(FACING_MODES.USER)  
+        }
+    });
   }
 
   return (
