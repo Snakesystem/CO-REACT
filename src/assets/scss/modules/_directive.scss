@@ -105,8 +105,15 @@
 }
 
 /* react-webcam custom style */
+/* src/components/WebCamInput.css */
 .webcam-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .webcam-video {
@@ -138,6 +145,21 @@
 
 .webcam-button:hover {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.webcam-swal-popup {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.webcam-swal-container {
+  padding: 0;
 }
 
 

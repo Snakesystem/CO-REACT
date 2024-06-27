@@ -29,6 +29,9 @@ export default function DataPendukung() {
   }
 
   const gmbar = localStorage.getItem('gambar');
+  const deleteGambar = () => {
+    localStorage.removeItem('gambar')
+  }
 
   return (
     <FormProvider {...dataPendukung}>
@@ -51,6 +54,7 @@ export default function DataPendukung() {
           </div>
         </div>
 
+        <button type="btton" onClick={deleteGambar} className="btn btn-primary">Hapus</button>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </FormProvider>
