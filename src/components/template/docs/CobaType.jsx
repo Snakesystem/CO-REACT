@@ -1,23 +1,48 @@
-import React, { useState } from 'react'
-import { Typeahead } from 'react-bootstrap-typeahead'
+import React from 'react';
+import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 
-export default function CobaType() {
+function CobaType (props) {
+  function handleTakePhoto (dataUri) {
+    // Do stuff with the photo...
+    console.log('takePhoto');
+  }
 
-    const [singleSelections, setSingleSelections] = useState(["Opsi 1"]);
+  function handleTakePhotoAnimationDone (dataUri) {
+    // Do stuff with the photo...
+    console.log('takePhoto');
+  }
 
-    const options = ["Opsi 1", "Opsi 2", "Opsi 3", "Opsi 4"];
+  function handleCameraError (error) {
+    console.log('handleCameraError', error);
+  }
 
-    console.log(singleSelections)
+  function handleCameraStart (stream) {
+    console.log('handleCameraStart');
+  }
+
+  function handleCameraStop () {
+    console.log('handleCameraStop');
+  }
 
   return (
-    <Typeahead
-          id="basic-typeahead-single"
-          labelKey="name"
-          onChange={setSingleSelections}
-          defaultSelected={singleSelections}
-          options={options}
-          placeholder="Choose a state..."
-          selected={singleSelections}
-        />
-  )
+    <Camera
+      onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+      onTakePhotoAnimationDone = { (dataUri) => { handleTakePhotoAnimationDone(dataUri); } }
+      onCameraError = { (error) => { handleCameraError(error); } }
+      idealFacingMode = {FACING_MODES.USER}
+      idealResolution = {{width: 640, height: 480}}
+      imageType = {IMAGE_TYPES.JPG}
+      imageCompression = {0.97}
+      isMaxResolution = {true}
+      isImageMirror = {false}
+      isSilentMode = {false}
+      isDisplayStartCameraError = {true}
+      isFullscreen = {false}
+      sizeFactor = {1}
+      onCameraStart = { (stream) => { handleCameraStart(stream); } }
+      onCameraStop = { () => { handleCameraStop(); } }
+    />
+  );
 }
+
+export default CobaType;

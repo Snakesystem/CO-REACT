@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+// import { BsFillCameraVideoFill, BsFillCameraVideoOffFill, BsFillCameraFill, BsFileEarmarkImageFill } from 'react-icons/bs';
 
 const CameraApp = () => {
   const videoRef = useRef(null);
@@ -6,7 +7,7 @@ const CameraApp = () => {
   const screenshotsContainerRef = useRef(null);
   const [videoStream, setVideoStream] = useState(null);
   const [useFrontCamera, setUseFrontCamera] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [savedScreenshots, setSavedScreenshots] = useState([]);
 
   useEffect(() => {
     initializeCamera();
@@ -42,31 +43,74 @@ const CameraApp = () => {
     }
   };
 
-  const handlePlay = () => {
-    videoRef.current.play();
-    setIsPlaying(true);
-  };
-
-  const handlePause = () => {
-    videoRef.current.pause();
-    setIsPlaying(false);
-  };
-
   const handleScreenshot = () => {
     const canvas = canvasRef.current;
     const video = videoRef.current;
-    const img = document.createElement("img");
 
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     canvas.getContext("2d").drawImage(video, 0, 0);
-    img.src = canvas.toDataURL("image/png");
 
-    screenshotsContainerRef.current.prepend(img);
+    // Resize the image to desired dimensions
+    const resizedCanvas = resizeImage(canvas, 640, 900); // Example: Resize to 640x480
+    const dataUrl = resizedCanvas.toDataURL("image/png");
+
+    // Generate random file name
+    const fileName = generateRandomFileName();
+    
+    // Save screenshot to localStorage
+    localStorage.setItem(fileName, dataUrl);
+
+    // Update savedScreenshots state with new screenshot
+    setSavedScreenshots([...savedScreenshots, fileName]);
+  };
+
+  const generateRandomFileName = () => {
+    return `screenshot_${Math.random().toString(36).substr(2, 9)}.png`;
+  };
+
+  const resizeImage = (canvas, targetWidth, targetHeight) => {
+    const { width, height } = canvas;
+  
+    // Hitung skala untuk menentukan bagian mana yang akan dipangkas
+    const scale = Math.max(targetWidth / width, targetHeight / height);
+  
+    // Hitung ukuran baru setelah scaling
+    const scaledWidth = width * scale;
+    const scaledHeight = height * scale;
+  
+    // Hitung bagian yang akan dipangkas
+    const cropX = (scaledWidth - targetWidth) / 2;
+    const cropY = (scaledHeight - targetHeight) / 2;
+  
+    // Buat canvas baru untuk hasil resize dengan ukuran target
+    const resizedCanvas = document.createElement("canvas");
+    resizedCanvas.width = targetWidth;
+    resizedCanvas.height = targetHeight;
+  
+    // Lakukan cropping dan gambar ulang ke canvas baru
+    resizedCanvas.getContext("2d").drawImage(
+      canvas,
+      cropX, cropY, scaledWidth - 2 * cropX, scaledHeight - 2 * cropY, // Bagian yang akan dipangkas
+      0, 0, targetWidth, targetHeight // Bagian yang akan digambar ulang di canvas baru
+    );
+  
+    return resizedCanvas;
+  };
+  
+  
+
+  const handleLoadScreenshot = (fileName) => {
+    const dataUrl = localStorage.getItem(fileName);
+    const img = document.createElement("img");
+    img.src = dataUrl;
+    screenshotsContainerRef.current.innerHTML = "";
+    screenshotsContainerRef.current.appendChild(img);
   };
 
   const handleChangeCamera = () => {
     setUseFrontCamera((prev) => !prev);
+    initializeCamera();
   };
 
   return (
@@ -78,17 +122,16 @@ const CameraApp = () => {
         muted
       ></video>
       <div style={{ position: "absolute", bottom: "10px", left: "50%", transform: "translateX(-50%)", zIndex: 1 }}>
-        <button onClick={handlePlay} disabled={isPlaying} className="btn btn-light">
-          <i className="bi bi-camera-video-fill"></i>
-        </button>
-        <button onClick={handlePause} disabled={!isPlaying} className="btn btn-light">
-          <i className="bi bi-camera-video-off-fill"></i>
-        </button>
         <button onClick={handleScreenshot} className="btn btn-light">
           <i className="bi bi-camera-fill"></i>
         </button>
+        {savedScreenshots.length > 0 && (
+          <button onClick={() => handleLoadScreenshot(savedScreenshots[savedScreenshots.length - 1])} className="btn btn-light">
+            <i className="bi bi-cloud-arrow-down-fill"></i>
+          </button>
+        )}
         <button onClick={handleChangeCamera} className="btn btn-light">
-          <i className="bi bi-arrow-repeat"></i>
+        <i className="bi bi-arrow-repeat"></i>
         </button>
       </div>
       <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
