@@ -1,0 +1,111 @@
+@use 'function' as function;
+@use 'variable' as var;
+
+.default-backdrop {
+    background-color: var.$bg-backdrop !important;
+}
+
+.card-checkbox {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    max-height: 6rem !important;
+    overflow-y: auto; /* Enable vertical scrolling */
+
+    .checkbox-list {
+        display: flex;
+        flex-direction: column;
+    }
+      
+    .checkbox-item {
+        margin-bottom: 8px;
+    }
+}
+/* mpc loader color */
+.mpc-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    // background-color: var.$bg-backdrop;
+    background-image: linear-gradient(#304352, #d7d2cc);
+    opacity: 1;
+    z-index: -9999;
+    transition: all 0.5s;
+
+    .item-loader h2 {
+        color: var.$white;
+    }
+}
+
+.wizard-card-footer {
+  display: none !important;
+}
+
+.swal-width {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+}
+
+.mpc-loader {
+  z-index: 999998;
+  opacity: 1;
+}
+
+.item-loader { 
+  display: grid;
+  margin: auto;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.swal2-xxs {
+  @include function.swal-responsive(var.$swal-xxs, 95%, 90%, 50%, var.$swal-xxs, var.$swal-xxs, 15%, 10%);
+}
+
+.swal2-xs {
+  @include function.swal-responsive(var.$swal-xs, 95%, 75%, 60%, 45%, var.$swal-xxs, var.$swal-xxs, 15%);
+}
+
+.swal2-sm {
+  @include function.swal-responsive(var.$swal-sm, 95%, 75%, 60%, 50%, 30%, var.$swal-xxs, var.$swal-xxs);
+}
+
+.swal2-md {
+  @include function.swal-responsive(var.$swal-md, 95%, 75%, 60%, 50%, 40%, var.$swal-xs, var.$swal-xs);
+}
+
+.swal2-lg {
+  @include function.swal-responsive(var.$swal-lg, 95%, 75%, 60%, 60%, 40%, var.$swal-md, var.$swal-md);
+}
+
+.swal2-xl {
+  @include function.swal-responsive(var.$swal-xl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-lg, var.$swal-lg);
+}
+
+.swal2-xxl {
+  @include function.swal-responsive(var.$swal-xxl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl);
+}
+
+.swal2-xxxl {
+  @include function.swal-responsive(var.$swal-xxxl, 95%, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl);
+}
+
+.swal2-fullscreen {
+  width: var.$swal-fullscreen !important;
+  // @include function.breakpoint-swal-height(0, 0, 0, 0, 0, $option: true, $value: 0);
+  height: 100vh !important;
+  max-width: none !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+}
+
+@keyframes l12 {
+  100% {
+      transform: rotate(.5turn)
+  }
+}

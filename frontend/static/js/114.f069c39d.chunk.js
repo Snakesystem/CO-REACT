@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmyreactapp=self.webpackChunkmyreactapp||[]).push([[114],{2114:(e,r,a)=>{a.r(r),a.d(r,{default:()=>p});a(5043);var c=a(579);function p(){return(0,c.jsx)("div",{children:"BRIForm"})}}}]);
+//# sourceMappingURL=114.f069c39d.chunk.js.map

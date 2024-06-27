@@ -1,0 +1,63 @@
+@use 'modules/variable';
+@use 'modules/directive';
+@use 'modules/function';
+@use 'modules/component';
+@use 'modules/layout';
+
+* {
+    ::before,
+    ::after {
+        box-sizing: border-box;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#dark {
+    @include function.use-dark-mode()
+}
+
+#light {
+    @include function.use-light-mode()
+}
+
+.swal2-container { 
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;  
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100% !important;
+
+    .swal-notfound {
+        @include function.display-swal();
+        @include function.breakpoint-swal-height(0, 0, 0, 0, 0, $option: true, $value: 0);
+        
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+
+        .swal2-html-container img {
+            width: 100%;
+        }
+
+        @media (min-width: 670px) {
+            .swal2-html-container img {
+                width: 50%;
+            }
+        }
+    }
+}
+
+.page-client {
+    .form-layout {
+        margin-top: -6rem !important;
+    }
+}

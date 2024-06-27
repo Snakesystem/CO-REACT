@@ -1,0 +1,201 @@
+@use 'variable' as var;
+
+@mixin display-swal() {
+    margin: 0 !important; 
+    top: 0 !important;
+    left: 0 !important;
+    border-radius: 0 !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+@mixin breakpoint-swal-height($break-xs:5rem, $break-sm:10rem, $break-md:14rem, $break-lg:20rem, $break-xl:32rem, $option: false, $value: 0) {
+    @media (min-height: 320px) {
+        .swal2-icon {
+            margin-top: $break-xs;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-xs;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 670px) {
+        .swal2-icon {
+            margin-top: $break-sm;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-sm;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+    @media (min-height: 813px) {
+        .swal2-icon {
+            margin-top: $break-md;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-md;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 930px) {
+        .swal2-icon {
+            margin-top: $break-lg;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-lg;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+
+    @media (min-height: 1920px) {
+        .swal2-icon {
+            margin-top: $break-xl;
+        }
+
+        .swal2-actions { 
+            @if($option == false) {
+                margin-bottom: $break-xl;
+            } @else {
+                margin-bottom: $value;
+            }
+        }
+    }
+}
+
+@mixin breakpoint-swal-width($def-width) {
+
+    @media (min-width: 9976px) {
+        width: $def-width !important;
+        height: 35% !important;
+        max-width: 90% !important;
+        max-height: 100% !important;
+    }
+
+    @media (min-width: 1280px) {
+        width: $def-width !important;
+        height: 35% !important;
+        max-width: 90% !important;
+        max-height: 100% !important;
+    }
+}
+
+@mixin use-light-mode() {
+    /* Choice style to light mode */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    color: var.$dark;
+
+    .swal2-title {
+        color: var.$gray-900 !important;
+    }
+
+    .swal2-html-container {
+        color: var.$gray-900 !important;
+    }
+    
+    .default-popup-background {
+        background-color: var.$white;
+        background-size: cover;
+        background-position: center;
+    }
+    .swal2-success-circular-line-left {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-fix {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-circular-line-right {
+        background-color: transparent !important;
+    }
+}
+
+@mixin use-dark-mode() {
+    /* Choice style to dark mode */
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #212529;
+    color: var.$white;
+    
+    .swal2-title {
+        color: white !important;
+    }
+
+    .swal2-html-container {
+        color: white !important;
+    }
+    
+    .default-popup-background {
+        background-color: var.$gray-700;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .swal2-success-circular-line-left {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-fix {
+        background-color: transparent !important;
+    }
+
+    .swal2-success-circular-line-right {
+        background-color: transparent !important;
+    }
+}
+
+@mixin swal-responsive($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
+    width: $size !important;
+    
+    @media (min-width: var.$breakpoint-xs) {
+      width: $xs !important;
+    }
+    
+    @media (min-width: var.$breakpoint-sm) { 
+      width: $small !important;
+    }
+    
+    @media (min-width: var.$breakpoint-md) {
+      width: $medium !important;
+    }
+    
+    @media (min-width: var.$breakpoint-lg) {
+      width: $large !important;
+    }
+    
+    @media (min-width: var.$breakpoint-xl) {
+      width: $xlarge !important;
+    }
+    
+    @media (min-width: var.$breakpoint-xxl) {
+      width: $xxlarge !important;
+    }
+  
+    @media (min-width: var.$breakpoint-xxxl) {
+      width: $xxxlarge !important;
+    }
+}
