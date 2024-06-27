@@ -9,11 +9,19 @@ export default function InputWebcam() {
 
   const { showAlert } = useSweetAlert()
   const [camera, setCamera] = useState(null);
+  const [facingMode, setFacingMode] = useState(FACING_MODES.USER);
   const navigate = useNavigate();
   const handleTakePhoto = (dataUri) => {
 
     setCamera(dataUri);
   }
+
+
+  const switchFacingMode = () => {
+    setFacingMode((prevMode) =>
+      prevMode === FACING_MODES.USER ? FACING_MODES.ENVIRONMENT : FACING_MODES.USER
+    );
+  };
 
   useEffect(() => {
     if(camera) {
@@ -39,14 +47,21 @@ export default function InputWebcam() {
     showAlert({
         html:<Suspense fallback={<LifeLine cla color="#17c1e8" size="large" text="Loading content, please wait..." textColor="#ffffff" />}>
                 <Camera
-                    isFullscreen = { false }
-                    isImageMirror = {true}
-                    imageType={ IMAGE_TYPES.JPG }
-                    idealResolution = {{width: 480, height: 540}}
-                    idealFacingMode = {FACING_MODES.ENVIRONMENT}
-                    onCameraStop = { () => { handleCameraStop(); } } 
-                    onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+                    onTakePhoto={handleTakePhoto}
+                    idealFacingMode={facingMode}
+                    idealResolution={{ width: 640, height: 480 }}
+                    imageType={IMAGE_TYPES.JPG}
+                    imageCompression={0.97}
+                    isMaxResolution={true}
+                    isImageMirror={facingMode === FACING_MODES.USER}
+                    isSilentMode={false}
+                    isDisplayStartCameraError={true}
+                    isFullscreen={false}
+                    sizeFactor={1}
                 />
+                <button onClick={switchFacingMode}>
+                  Switch to {facingMode === FACING_MODES.USER ? 'Back' : 'Front'} Camera
+                </button>
             </Suspense>,
         allowOutsideClick: false,
         showConfirmButton: false
