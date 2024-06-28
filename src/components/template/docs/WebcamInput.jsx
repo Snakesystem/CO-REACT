@@ -22,15 +22,15 @@ const WebCamInput = () => {
         facingMode,
       }
     : {
-        width: 640,
-        height: 480,
+        width: 480,
+        height: 640,
         facingMode,
       };
 
   const captureImage = () => {
     const imageSrc = webcamRef.current.getScreenshot({
-      width: isMobile ? window.innerWidth : 640,
-      height: isMobile ? window.innerHeight : 480,
+      width: isMobile ? window.innerWidth : 480,
+      height: isMobile ? window.innerHeight : 640,
     });
     setCapturedImage(imageSrc);
     setValue('webcam', imageSrc); // Set value in react-hook-form
