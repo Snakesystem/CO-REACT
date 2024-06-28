@@ -41,7 +41,7 @@ export default function DataPendukung() {
             <div className="row">
               <div className="col-md-4">
                 <WebCamInput ngModel="webcam"/>
-                {/* <ComponentWeb/> */}
+                {/* <CobaType/> */}
               </div>
               <div className="col-md-4">
                 <img src={gmbar} alt="" />
@@ -54,7 +54,7 @@ export default function DataPendukung() {
           </div>
         </div>
 
-        <button type="btton" onClick={deleteGambar} className="btn btn-primary">Hapus</button>
+        {/* <button type="btton" onClick={deleteGambar} className="btn btn-primary">Hapus</button> */}
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </FormProvider>
