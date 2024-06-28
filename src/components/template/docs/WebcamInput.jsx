@@ -87,7 +87,6 @@ const WebCamInput = () => {
       },
       backdrop: 'rgba(0,0,0,0.9)',
       heightAuto: false,
-      width: '100%',
       padding: 0,
       margin: 0,
     });
@@ -164,7 +163,6 @@ const WebCamInput = () => {
         },
         backdrop: 'rgba(0,0,0,0.9)',
         heightAuto: false,
-        width: '100%',
         padding: 0,
         margin: 0,
       });
