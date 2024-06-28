@@ -105,8 +105,7 @@
 }
 
 /* react-webcam custom style */
-/* src/components/WebCamInput.css */
-
+// /* src/components/WebCamInput.css */
 // .swal-cover {
 //   display: flex;
 //   flex-direction: column;
@@ -118,11 +117,10 @@
 //   margin: 0;
 // }
 
-// .cover-top {
-//   .cover-bottom {
-//     height: 50vh; /* Sesuaikan tinggi cover setengah badan */
-//     width: 100%;
-//   }
+// .cover-top,
+// .cover-bottom {
+//   height: 50vh; /* Sesuaikan tinggi cover setengah badan */
+//   width: 100%;
 // }
 
 // .cover-top {
@@ -135,31 +133,23 @@
 
 // .webcam-container {
 //   position: relative;
+//   width: 100%;
+//   height: 100%;
 //   display: flex;
 //   justify-content: center;
 //   align-items: center;
-//   flex-direction: column;
-//   width: 100%;
-//   height: 100%;
 // }
 
-// .webcam-video.desktop {
-//   width: 480px;
-//   height: 640px;
-//   object-fit: cover;
+// .webcam-video {
 //   position: absolute;
-// }
-
-// .webcam-video.mobile {
 //   width: 100%;
 //   height: 100%;
-//   object-fit: cover;
-//   position: relative;
+//   object-fit: cover; /* Menjaga proporsi video tanpa ter-zoom */
 // }
 
 // .webcam-controls {
-//   bottom: 10px;
 //   position: absolute;
+//   bottom: 10px;
 //   left: 50%;
 //   transform: translateX(-50%);
 //   display: flex;
@@ -183,20 +173,9 @@
 //   background-color: rgba(0, 0, 0, 0.7);
 // }
 
-// // .webcam-swal-popup {
-// //   width: 100vw;
-// //   height: 100vh;
-// //   padding: 0;
-// //   margin: 0;
-// //   display: flex;
-// //   justify-content: center;
-// //   align-items: center;
-// //   background-color: transparent;
-// // }
-
 // .swal2-popup {
-//   width: 100% !important;
-//   height: 100% !important;
+//   width: 100vw !important;
+//   height: 100vh !important;
 //   padding: 0 !important;
 //   margin: 0 !important;
 //   // display: flex !important;
@@ -207,10 +186,6 @@
 
 // .swal2-content {
 //   padding: 0 !important;
-// }
-
-// .webcam-swal-container {
-//   padding: 0;
 // }
 
 // .swal-preview {
@@ -228,6 +203,7 @@
 // .preview-buttons {
 //   margin-top: 20px;
 // }
+
 
 @keyframes l12 {
   100% {

@@ -4,9 +4,7 @@ import Webcam from 'react-webcam';
 import { useFormContext, Controller } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import './CaptureImageInput.scss';
+// import './CaptureImageInput.scss';
 
 const WebCamInput = () => {
   const { control, setValue } = useFormContext();

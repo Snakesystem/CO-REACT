@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSchema } from '../../hooks/useSchema';
-import InputWebcam from '../../components/template/form-input/InputWebcam'
 import InputFileUpload from '../../components/template/form-input/InputFileUpload'
 import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,6 +7,7 @@ import CameraComponent from '../../components/template/docs/InputFileUpload';
 import CameraApp from '../../components/template/docs/InputFileUpload';
 import CobaType, { ComponentWeb } from '../../components/template/docs/CobaType';
 import WebCamInput from '../../components/template/docs/WebcamInput';
+import WebCam from '../../components/template/form-input/WebCam';
 
 export default function DataPendukung() {
 
@@ -40,7 +40,7 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <WebCamInput ngModel="webcam"/>
+                <WebCam ngModel="webcam" />
                 {/* <CobaType name="captureImage"/> */}
               </div>
               <div className="col-md-4">
