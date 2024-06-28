@@ -112,7 +112,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 99vh;
   background-color: rgba(0, 0, 0, 0.9);
   padding: 0;
   margin: 0;
@@ -140,20 +140,20 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 90%;
+  height: 99%;
 }
 
 .webcam-video.desktop {
   width: 640px;
   height: 480px;
-  object-fit: cover;
+  object-fit: contain;
   position: absolute;
 }
 
 .webcam-video.mobile {
   width: 100%;
-  height: 90%;
-  object-fit: cover;
+  height: 99%;
+  object-fit: contain;
   position: absolute;
 }
 
@@ -183,46 +183,20 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-// .webcam-swal-popup {
-//   width: 100vw;
-//   height: 100vh;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: transparent;
-// }
-
 .swal2-popup {
-
   width: 100vw !important;
-
   height: 100vh !important;
-
   padding: 0 !important;
-
   margin: 0 !important;
-
   // display: flex !important;
-
   justify-content: center !important;
-
   align-items: center !important;
-
   background-color: transparent !important;
-
 }
-
-
 
 .swal2-content {
-
   padding: 0 !important;
-
 }
-
-
 
 .webcam-swal-container {
   padding: 0;
