@@ -1,116 +1,64 @@
-// CaptureImageInput.js
-import React, { useState, useRef } from 'react';
+// Import library yang dibutuhkan
+import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
-import Webcam from 'react-webcam';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import './CaptureImageInput.scss';
+import Webcam from 'react-webcam';
 
-const CaptureImageInput = ({ name }) => {
-  const { control, setValue } = useFormContext();
-  const webcamRef = useRef(null);
-  const [imageData, setImageData] = useState(null);
-  const [facingMode, setFacingMode] = useState('user');
-  const MySwal = withReactContent(Swal);
+// Inisialisasi SweetAlert dengan SweetAlert2ReactContent
+const MySwal = withReactContent(Swal);
 
-  const handleCapture = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImageData(imageSrc);
-    MySwal.fire({
-      title: 'Captured Image',
-      imageUrl: imageSrc,
-      imageAlt: 'Captured Image',
-      showCancelButton: true,
-      confirmButtonText: '<i class="bi bi-check-circle"></i> Confirm',
-      cancelButtonText: '<i class="bi bi-camera"></i> Retake Photo',
-      customClass: {
-        popup: 'custom-swal',
-      },
-      width: '80%', // Lebar default untuk desktop
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setValue(name, imageSrc);
-      } else {
-        setImageData(null);
-        openWebcamModal();
-      }
-    });
-  };
+// Komponen InputCaptureImage untuk menangkap gambar
+const InputCaptureImage = () => {
+  const { control, setValue } = useFormContext(); // Menggunakan useFormContext untuk mengakses kontrol formulir
 
-  const openWebcamModal = () => {
-    MySwal.fire({
+  // Menggunakan ref untuk mengakses objek Webcam
+  const webcamRef = React.useRef(null);
+
+  // Fungsi untuk menampilkan SweetAlert dengan video dari webcam
+  const openCamera = async () => {
+    await MySwal.fire({
       title: 'Capture Image',
       html: (
-        <div className="webcam-container">
+        <div>
           <Webcam
             audio={false}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            className="webcam-video"
-            videoConstraints={{
-              width: { min: 480, ideal: 1280, max: 3000 },
-              height: { min: 640, ideal: 720, max: 4000 },
-              aspectRatio: 9 / 16,
-              facingMode: facingMode,
-            }}
+            width="100%"
+            height="auto"
           />
-          <div className="webcam-controls">
-            <button
-              type="button"
-              className="webcam-button"
-              onClick={handleCapture}
-            >
-              <i className="bi bi-camera"></i>
-            </button>
-            <button
-              type="button"
-              className="webcam-button"
-              onClick={() => setFacingMode(facingMode === 'user' ? 'environment' : 'user')}
-            >
-              <i className="bi bi-arrow-repeat"></i>
-            </button>
-            <button
-              type="button"
-              className="webcam-button"
-              onClick={() => MySwal.close()}
-            >
-              <i className="bi bi-x-circle"></i>
-            </button>
-          </div>
         </div>
       ),
-      showConfirmButton: false,
-      showCancelButton: false,
-      customClass: {
-        popup: 'custom-swal',
-      },
-      width: '80%', // Lebar default untuk desktop
+      showCancelButton: true,
+      confirmButtonText: 'Capture',
+      cancelButtonText: 'Close',
+      showLoaderOnConfirm: true,
+      preConfirm: async () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+        // Masukkan nilai hasil capture ke dalam kontrol react-hook-form
+        setValue('captureImage', imageSrc); // 'captureImage' adalah nama dari field dalam formulir
+        console.log('Captured image:', imageSrc);
+      }
     });
   };
 
   return (
-    <div className="text-center">
+    <div>
+      {/* Tombol untuk menampilkan SweetAlert dengan video webcam */}
+      <button onClick={openCamera}>Open Camera</button>
+
+      {/* Komponen Webcam (tersembunyi) untuk digunakan oleh SweetAlert */}
       <Controller
-        name={name}
+        name="captureImage"
         control={control}
+        defaultValue=""
         render={({ field }) => (
-          <>
-            {imageData ? (
-              <img src={imageData} alt="Captured" className="img-thumbnail mb-3" />
-            ) : (
-              <button
-                type="button"
-                className="btn btn-primary mb-3"
-                onClick={openWebcamModal}
-              >
-                <i className="bi bi-camera-video"></i> Open Webcam
-              </button>
-            )}
-          </>
+          <input type="hidden" {...field} />
         )}
       />
     </div>
   );
 };
 
-export default CaptureImageInput;
+export default InputCaptureImage;

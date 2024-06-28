@@ -1,19 +1,43 @@
-// // CaptureImageInput.scss
+// /* src/components/WebCamInput.css */
+// .swal-cover {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+//   background-color: rgba(0, 0, 0, 0.9);
+//   padding: 0;
+//   margin: 0;
+// }
+
+// .cover-top,
+// .cover-bottom {
+//   height: 50vh; /* Sesuaikan tinggi cover setengah badan */
+//   width: 100%;
+// }
+
+// .cover-top {
+//   background-color: rgba(0, 0, 0, 0.9);
+// }
+
+// .cover-bottom {
+//   background-color: transparent;
+// }
+
 // .webcam-container {
 //   position: relative;
+//   width: 100%;
+//   height: 100%;
 //   display: flex;
 //   justify-content: center;
 //   align-items: center;
-//   max-width: 100%;
-//   height: auto;
 // }
 
 // .webcam-video {
+//   position: absolute;
 //   width: 100%;
-//   height: auto;
-//   max-width: 100%;
-//   object-fit: cover;
-//   border-radius: 10px;
+//   height: 100%;
+//   object-fit: cover; /* Menjaga proporsi video tanpa ter-zoom */
 // }
 
 // .webcam-controls {
@@ -27,44 +51,48 @@
 // }
 
 // .webcam-button {
-//   background-color: rgba(0, 0, 0, 0.6);
-//   border: none;
+//   background-color: rgba(0, 0, 0, 0.5);
 //   color: white;
-//   padding: 10px;
+//   border: none;
 //   border-radius: 50%;
+//   width: 50px;
+//   height: 50px;
 //   display: flex;
-//   justify-content: center;
 //   align-items: center;
-//   font-size: 24px;
-//   cursor: pointer;
+//   justify-content: center;
 // }
 
 // .webcam-button:hover {
-//   background-color: rgba(0, 0, 0, 0.8);
+//   background-color: rgba(0, 0, 0, 0.7);
 // }
 
-// .custom-swal {
-//   width: 80%; // Lebar default untuk desktop
+// .swal2-popup {
+//   width: 100vw !important;
+//   height: 100vh !important;
+//   padding: 0 !important;
+//   margin: 0 !important;
+//   // display: flex !important;
+//   justify-content: center !important;
+//   align-items: center !important;
+//   background-color: transparent !important;
 // }
 
-// .img-thumbnail {
-//   width: auto;
-//   height: auto;
-//   max-width: 100%;
-//   max-height: 100%;
-//   object-fit: contain; // Atur sesuai dengan kebutuhan, bisa 'contain' atau 'cover'
+// .swal2-content {
+//   padding: 0 !important;
 // }
 
-// @media (max-width: 768px) {
-//   .custom-swal {
-//     width: calc(100% - 20px); // Lebar untuk perangkat mobile menyesuaikan konten dengan sedikit padding
-//     max-width: 100%;
-//     height: auto !important; // Tinggi untuk perangkat mobile menyesuaikan konten
-//     border-radius: 0 !important; // Tidak ada border radius pada perangkat mobile
-//   }
+// .swal-preview {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 20px;
+//   background-color: rgba(0, 0, 0, 0.9);
+//   border-radius: 8px;
+//   width: 100%;
+//   height: 100%;
+// }
 
-//   .swal2-title,
-//   .swal2-content {
-//     font-size: 16px !important; // Ukuran teks yang lebih besar untuk perangkat mobile
-//   }
+// .preview-buttons {
+//   margin-top: 20px;
 // }

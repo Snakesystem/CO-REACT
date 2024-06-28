@@ -41,7 +41,7 @@ export default function DataPendukung() {
             <div className="row">
               <div className="col-md-4">
                 <WebCamInput ngModel="webcam"/>
-                {/* <CobaType name="webcam"/> */}
+                {/* <CobaType name="captureImage"/> */}
               </div>
               <div className="col-md-4">
                 <img src={gmbar} alt="" />

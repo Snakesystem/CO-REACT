@@ -4,6 +4,9 @@ import Webcam from 'react-webcam';
 import { useFormContext, Controller } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import './CaptureImageInput.scss';
 
 const WebCamInput = () => {
   const { control, setValue } = useFormContext();
@@ -17,10 +20,10 @@ const WebCamInput = () => {
 
   const videoConstraints = isMobile
     ? {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        facingMode,
-      }
+      width: 480,
+      height: 640,
+      facingMode,
+    }
     : {
         width: 480,
         height: 640,
@@ -29,8 +32,8 @@ const WebCamInput = () => {
 
   const captureImage = () => {
     const imageSrc = webcamRef.current.getScreenshot({
-      width: 480,
-      height: 640,
+      width:  480,
+      height:  640,
     });
     setCapturedImage(imageSrc);
     setValue('webcam', imageSrc); // Set value in react-hook-form
@@ -87,6 +90,7 @@ const WebCamInput = () => {
       },
       backdrop: 'rgba(0,0,0,0.9)',
       heightAuto: false,
+      // width: '100%',
       padding: 0,
       margin: 0,
     });
@@ -119,6 +123,7 @@ const WebCamInput = () => {
         },
         backdrop: 'rgba(0,0,0,0.9)',
         heightAuto: false,
+        // width: '80%',
         padding: 0,
         margin: 0,
       });
@@ -162,6 +167,7 @@ const WebCamInput = () => {
         },
         backdrop: 'rgba(0,0,0,0.9)',
         heightAuto: false,
+        // width: '100%',
         padding: 0,
         margin: 0,
       });
