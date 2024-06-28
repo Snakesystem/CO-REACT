@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import Webcam from 'react-webcam';
 import Swal from 'sweetalert2';
+import './CameraCapture.scss';
 
 const CameraCapture = () => {
   const { control, setValue } = useFormContext();
