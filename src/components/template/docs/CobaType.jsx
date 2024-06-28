@@ -4,6 +4,7 @@ import { useFormContext, Controller } from 'react-hook-form';
 import Webcam from 'react-webcam';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import './CaptureImageInput.scss';
 
 const CaptureImageInput = ({ name }) => {
   const { control, setValue } = useFormContext();
@@ -25,7 +26,7 @@ const CaptureImageInput = ({ name }) => {
       customClass: {
         popup: 'custom-swal',
       },
-      width: '50%', // Lebar default untuk desktop
+      width: '80%', // Lebar default untuk desktop
     }).then((result) => {
       if (result.isConfirmed) {
         setValue(name, imageSrc);
@@ -49,6 +50,7 @@ const CaptureImageInput = ({ name }) => {
             videoConstraints={{
               width: { min: 480, ideal: 1280, max: 3000 },
               height: { min: 640, ideal: 720, max: 4000 },
+              aspectRatio: 9 / 16,
               facingMode: facingMode,
             }}
           />
@@ -82,7 +84,7 @@ const CaptureImageInput = ({ name }) => {
       customClass: {
         popup: 'custom-swal',
       },
-      width: '50%', // Lebar default untuk desktop
+      width: '80%', // Lebar default untuk desktop
     });
   };
 

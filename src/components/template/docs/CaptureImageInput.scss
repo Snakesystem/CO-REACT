@@ -1,62 +1,70 @@
-// CaptureImageInput.scss
-.webcam-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: auto;
-}
+// // CaptureImageInput.scss
+// .webcam-container {
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   max-width: 100%;
+//   height: auto;
+// }
 
-.webcam-video {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
+// .webcam-video {
+//   width: 100%;
+//   height: auto;
+//   max-width: 100%;
+//   object-fit: cover;
+//   border-radius: 10px;
+// }
 
-.webcam-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
+// .webcam-controls {
+//   position: absolute;
+//   bottom: 10px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   display: flex;
+//   justify-content: center;
+//   gap: 10px;
+// }
 
-.webcam-button {
-  background-color: rgba(0, 0, 0, 0.6);
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  cursor: pointer;
-}
+// .webcam-button {
+//   background-color: rgba(0, 0, 0, 0.6);
+//   border: none;
+//   color: white;
+//   padding: 10px;
+//   border-radius: 50%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 24px;
+//   cursor: pointer;
+// }
 
-.webcam-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+// .webcam-button:hover {
+//   background-color: rgba(0, 0, 0, 0.8);
+// }
 
-.custom-swal {
-  width: 80%; // Lebar default untuk desktop
-}
+// .custom-swal {
+//   width: 80%; // Lebar default untuk desktop
+// }
 
-@media (max-width: 768px) {
-  .custom-swal {
-    width: calc(100% - 20px); // Lebar untuk perangkat mobile menyesuaikan konten dengan sedikit padding
-    max-width: 100%;
-    height: auto !important; // Tinggi untuk perangkat mobile menyesuaikan konten
-    border-radius: 0 !important; // Tidak ada border radius pada perangkat mobile
-  }
+// .img-thumbnail {
+//   width: auto;
+//   height: auto;
+//   max-width: 100%;
+//   max-height: 100%;
+//   object-fit: contain; // Atur sesuai dengan kebutuhan, bisa 'contain' atau 'cover'
+// }
 
-  .swal2-title,
-  .swal2-content {
-    font-size: 16px !important; // Ukuran teks yang lebih besar untuk perangkat mobile
-  }
-}
+// @media (max-width: 768px) {
+//   .custom-swal {
+//     width: calc(100% - 20px); // Lebar untuk perangkat mobile menyesuaikan konten dengan sedikit padding
+//     max-width: 100%;
+//     height: auto !important; // Tinggi untuk perangkat mobile menyesuaikan konten
+//     border-radius: 0 !important; // Tidak ada border radius pada perangkat mobile
+//   }
+
+//   .swal2-title,
+//   .swal2-content {
+//     font-size: 16px !important; // Ukuran teks yang lebih besar untuk perangkat mobile
+//   }
+// }
