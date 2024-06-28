@@ -144,9 +144,9 @@
 }
 
 .webcam-video.desktop {
-  width: 640px;
-  height: 480px;
-  object-fit: contain;
+  width: 480px;
+  height: 640px;
+  object-fit: cover;
   position: absolute;
 }
 
