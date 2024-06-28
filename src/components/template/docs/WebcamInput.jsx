@@ -4,7 +4,6 @@ import Webcam from 'react-webcam';
 import { useFormContext, Controller } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import './CaptureImageInput.scss';
 
 const WebCamInput = () => {
   const { control, setValue } = useFormContext();
@@ -18,8 +17,8 @@ const WebCamInput = () => {
 
   const videoConstraints = isMobile
     ? {
-        width: 480,
-        height: 640,
+        width: window.innerWidth,
+        height: window.innerHeight,
         facingMode,
       }
     : {
@@ -120,7 +119,6 @@ const WebCamInput = () => {
         },
         backdrop: 'rgba(0,0,0,0.9)',
         heightAuto: false,
-        width: '80%',
         padding: 0,
         margin: 0,
       });
