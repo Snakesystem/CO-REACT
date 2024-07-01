@@ -114,11 +114,11 @@
 
   .webcam-container {
     position: relative;
-    height: 100vh;
+    height: 100% !important;
     padding-bottom: 0;
   }
 
-  .webcam-container video {
+  .webcam-container .webcam-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -132,7 +132,7 @@
   background-color: black;
 }
 
-.webcam-container video {
+.webcam-container .webcam-video {
   position: absolute;
   top: 0;
   left: 0;

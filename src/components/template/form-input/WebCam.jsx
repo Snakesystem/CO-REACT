@@ -50,6 +50,9 @@ const CaptureImageInput = ({ name }) => {
                 <div className="webcam-container">
                   <Webcam
                     audio={false}
+                    videoConstraints={{
+                      facingMode: 'user',
+                    }}
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
                     className="webcam-video"
