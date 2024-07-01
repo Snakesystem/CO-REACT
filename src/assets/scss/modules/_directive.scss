@@ -107,7 +107,7 @@
 
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
-    height: 100vh;
+    height: 90vh;
   }
 
   .webcam-container {
@@ -119,6 +119,8 @@
   .webcam-container video {
     width: 100%;
     height: auto;
+    margin: 0;
+    padding: 0;
     object-fit: contain;
   }
 
