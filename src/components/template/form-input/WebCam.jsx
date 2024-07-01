@@ -2,12 +2,12 @@
 import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 import { useFormContext, Controller } from 'react-hook-form';
-import { Modal, Button } from 'react-bootstrap';
+// import './styles.scss'; // Pastikan untuk mengimpor file gaya Anda
 
-const WebCam = ({ name }) => {
+const CaptureImageInput = ({ name }) => {
   const { control } = useFormContext();
   const [showModal, setShowModal] = useState(false);
-  const [capturedImage, setCapturedImage] = useState('');
+  const [capturedImage, setCapturedImage] = useState(null);
   const webcamRef = useRef(null);
 
   const handleClose = () => setShowModal(false);
@@ -29,38 +29,47 @@ const WebCam = ({ name }) => {
             {capturedImage ? (
               <img src={capturedImage} alt="Captured" width="100%" />
             ) : (
-              <Button variant="secondary" onClick={handleShow}>
+              <button type="button" className="btn btn-secondary" onClick={handleShow}>
                 Open Camera
-              </Button>
+              </button>
             )}
             <input type="hidden" {...field} value={capturedImage || ''} />
           </div>
         )}
       />
 
-      <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Take a Picture</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            width="100%"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={capture}>
-            Capture
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {showModal && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <div className="modal-dialog modal-fullscreen" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Take a Picture</h5>
+                <button type="button" className="btn-close" aria-label="Close" onClick={handleClose}></button>
+              </div>
+              <div className="modal-body">
+                <div className="webcam-container">
+                  <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    className="webcam-video"
+                  />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleClose}>
+                  Close
+                </button>
+                <button type="button" className="btn btn-primary" onClick={capture}>
+                  Capture
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default WebCam;
+export default CaptureImageInput;
