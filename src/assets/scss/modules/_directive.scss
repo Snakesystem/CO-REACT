@@ -104,48 +104,40 @@
   margin: 0 !important;
 }
 
-/* styles.scss */
-// @import '~bootstrap/scss/bootstrap';
 
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
     height: 100vh;
-    // align-items: center !important;
   }
 
   .webcam-container {
     position: relative;
-    height: 100% !important;
-    padding: 10% 10% !important; /* Tambahkan padding untuk membuat video tampak lebih jauh */
-    background-color: black !important;
+    height: 100%;
+    background-color: black;
   }
 
   .webcam-container video {
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain !important; /* Gunakan contain untuk mempertahankan aspek rasio video */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
-}
 
-.webcam-container {
-  position: relative;
-  padding-bottom: 75%;
-  height: 0;
-  background-color: black;
-}
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-around;
+  }
 
-.webcam-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: space-around;
+  .modal-footer button {
+    color: white;
+    background-color: transparent;
+    border: none;
+  }
 }
 
 @keyframes l12 {
