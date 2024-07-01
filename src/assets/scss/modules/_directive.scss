@@ -110,12 +110,13 @@
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
     height: 100vh;
+    // align-items: center !important;
   }
 
   .webcam-container {
     position: relative;
     height: 100% !important;
-    padding: 10% 0 !important; /* Tambahkan padding untuk membuat video tampak lebih jauh */
+    padding: 10% 10% !important; /* Tambahkan padding untuk membuat video tampak lebih jauh */
     background-color: black !important;
   }
 
