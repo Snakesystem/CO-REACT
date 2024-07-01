@@ -103,6 +103,8 @@
   left: 0 !important;
   margin: 0 !important;
 }
+/* styles.scss */
+// @import '~bootstrap/scss/bootstrap';
 
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
@@ -119,7 +121,6 @@
   .modal-fullscreen-mobile.modal {
     padding: 0 !important;
     max-width: 100%;
-    max-height: 100%;
     margin: 0;
   }
 
@@ -146,6 +147,8 @@
 
   .modal-body {
     overflow-y: hidden; /* Prevent scrolling */
+    padding: 0; /* Remove default padding */
+    margin: 0;
   }
 
   .modal-footer {
