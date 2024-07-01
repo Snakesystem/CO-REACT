@@ -8,6 +8,7 @@ import CameraApp from '../../components/template/docs/InputFileUpload';
 import CobaType, { ComponentWeb } from '../../components/template/docs/CobaType';
 import WebCamInput from '../../components/template/docs/WebcamInput';
 import WebCam from '../../components/template/form-input/WebCam';
+import InputFileField from '../../components/template/form-input/InputFileField';
 
 export default function DataPendukung() {
 
@@ -40,7 +41,7 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <WebCam name="webcam" />
+                <InputFileField ngModel="webcam" fileType="image" ext="png" />
                 {/* <CobaType name="captureImage"/> */}
               </div>
               <div className="col-md-4">
