@@ -57,7 +57,7 @@ export const useSchema = () => {
     // SCHEMA VALIDATION FOR DATA PENDUKUNG
     const dataPendukungSchema = yup.object({ 
         IDCardFile: yup.string(),
-        webcam: yup.string(),
+        SelfieFile: yup.string(),
         SignatureFile: yup.string(),
     }).required();
 

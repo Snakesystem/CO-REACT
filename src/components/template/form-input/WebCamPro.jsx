@@ -100,7 +100,7 @@ const WebCamPro = (props) => {
 
   return (
     <div>
-      <Link className='bi bi-camera img-fluid fs-3 text-primary' onClick={handleShow}/>
+      <div style={{cursor: 'pointer'}} className='bi bi-camera img-fluid fs-3 text-primary' onClick={handleShow}/>
 
       {showModal && <ModalWebcam facingMode={facingMode} webcamRef={webcamRef} capture={capture} toggleFacingMode={toggleFacingMode} handleClose={handleClose} handleRetake={handleRetake} uploadImage={uploadImage} capturedImage={capturedImage} extentions={extentions}  />}
     </div>
