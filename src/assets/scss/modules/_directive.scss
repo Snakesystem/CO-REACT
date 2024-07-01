@@ -109,14 +109,20 @@
 
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
-    height: 95vh;
+    height: 100vh;
+    // width: 100vw;
     margin: 0;
     border: none;
     box-shadow: none;
+    top: 0;
+    left: 0;
+    transform: none;
   }
 
   .modal-fullscreen-mobile.modal {
     padding: 0 !important;
+    max-width: 100%;
+    margin: 0;
   }
 
   .webcam-container {
@@ -161,7 +167,6 @@
     border: none;
   }
 }
-
 
 @keyframes l12 {
   100% {
