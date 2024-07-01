@@ -105,10 +105,10 @@
 }
 
 /* styles.scss */
-// @import '~bootstrap/scss/bootstrap';
-
-.modal-fullscreen .modal-content {
-  height: 100vh;
+@media (max-width: 768px) {
+  .modal-fullscreen-mobile .modal-content {
+    height: 100vh;
+  }
 }
 
 .webcam-container {

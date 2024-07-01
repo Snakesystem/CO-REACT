@@ -40,7 +40,7 @@ const CaptureImageInput = ({ name }) => {
 
       {showModal && (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <div className="modal-dialog modal-fullscreen" role="document">
+          <div className="modal-dialog modal-fullscreen-mobile" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Take a Picture</h5>
