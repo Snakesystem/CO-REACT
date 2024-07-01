@@ -1,7 +1,6 @@
 // CaptureImageInput.js
 import React, { useState, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
-import { Link } from 'react-router-dom';
 
 const ModalWebcam = (props) => {
 
@@ -50,9 +49,21 @@ const WebCamPro = (props) => {
   const { extentions, screenShot } = props;
 
   const [showModal, setShowModal] = useState(false);
+  const [device, setDevice] = useState({
+    width: 480,
+    height: 640,
+  });
   const [capturedImage, setCapturedImage] = useState(null);
   const [facingMode, setFacingMode] = useState('user'); // default to front camera
   const webcamRef = useRef(null);
+
+  useEffect(() => {
+    if(window.innerWidth < 776) {
+      setDevice({ width: 480, height: 640 });
+    } else {
+      setDevice({ width: 640, height: 480 });
+    }
+  }, [device]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -72,10 +83,7 @@ const WebCamPro = (props) => {
   const handleShow = () => setShowModal(true);
 
   const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot({
-      width: 640,
-      height: 480,
-    });
+    const imageSrc = webcamRef.current.getScreenshot(device);
     setCapturedImage(imageSrc);
   };
 
