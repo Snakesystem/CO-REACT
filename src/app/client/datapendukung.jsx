@@ -40,7 +40,7 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <WebCam ngModel="webcam" />
+                <WebCam name="webcam" />
                 {/* <CobaType name="captureImage"/> */}
               </div>
               <div className="col-md-4">

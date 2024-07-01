@@ -1,107 +1,66 @@
-import React, { useRef, useState } from 'react'
-import { Controller, useFormContext } from 'react-hook-form';
+// CaptureImageInput.js
+import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { useSweetAlert } from '../../../hooks/useSweetAlert';
+import { useFormContext, Controller } from 'react-hook-form';
+import { Modal, Button } from 'react-bootstrap';
 
-const VideoCam = ({webcamRef, videoConstraints}) => {
-    return (
-        <div className="swal-cover">
-            <div className="cover-top"></div>
-                <div className="webcam-container">
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    videoConstraints={videoConstraints}
-                    className={`webcam-video`}
-                />
-                <div className="webcam-controls">
-                    <button type="button" className="btn btn-primary me-2 webcam-button" >
-                    <i className="bi bi-camera"></i>
-                    </button>
-                    <button type="button" className="btn btn-secondary webcam-button">
-                    <i className="bi bi-arrow-repeat"></i>
-                    </button>
-                    <button type="button" className="btn btn-danger webcam-button">
-                    <i className="bi bi-x-lg"></i>
-                    </button>
-                </div>
-                </div>
-            <div className="cover-bottom"></div>
-        </div>
-    )
-}
+const WebCam = ({ name }) => {
+  const { control } = useFormContext();
+  const [showModal, setShowModal] = useState(false);
+  const [capturedImage, setCapturedImage] = useState('');
+  const webcamRef = useRef(null);
 
-export default function WebCam() {
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
-    const webcamRef = useRef(null);
-    const [capturedImage, setCapturedImage] = useState(null);
-    const [facingMode, setFacingMode] = useState('user');
-    const [showPreview, setShowPreview] = useState(false);
-    const MySwal = withReactContent(Swal);
-    const { showAlert, closeAlert } = useSweetAlert();
+  const capture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setCapturedImage(imageSrc);
+    handleClose();
+  };
 
-    const { control, setValue } = useFormContext();
-
-    const videoConstraints = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-        facingMode,
-    };
-
-    const toggleFacingMode = () => {
-      setFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user'));
-    };
-
-    const openCamera = () => {
-        showAlert({
-            html: <div className="swal-cover">
-            <div className="cover-top"></div>
-                <div className="webcam-container">
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    videoConstraints={videoConstraints}
-                    className={`webcam-video`}
-                />
-                <div className="webcam-controls">
-                    <button type="button" className="btn btn-primary me-2 webcam-button" >
-                    <i className="bi bi-camera"></i>
-                    </button>
-                    <button type="button" className="btn btn-secondary webcam-button" onClick={toggleFacingMode}>
-                    <i className="bi bi-arrow-repeat"></i>
-                    </button>
-                    <button type="button" className="btn btn-danger webcam-button" onClick={closeAlert}>
-                    <i className="bi bi-x-lg"></i>
-                    </button>
-                </div>
-                </div>
-            <div className="cover-bottom"></div>
-        </div>,
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            showCancelButton: false
-        }, 'xl',
-      'default-popup-background',
-      'default-backdrop');
-    }
   return (
-    <div className="form-group mb-3">
-      <button type="button" className='btn btn-primary' onClick={openCamera}><i className="bi bi-camera"></i></button>
-      {/* <VideoCam webcamRef={webcamRef} videoConstraints={videoConstraints}/> */}
-      
+    <div>
       <Controller
-        name="webcam"
+        name={name}
         control={control}
         render={({ field }) => (
-          <>
-            <input type="hidden" {...field} />
-          </>
+          <div>
+            {capturedImage ? (
+              <img src={capturedImage} alt="Captured" width="100%" />
+            ) : (
+              <Button variant="secondary" onClick={handleShow}>
+                Open Camera
+              </Button>
+            )}
+            <input type="hidden" {...field} value={capturedImage || ''} />
+          </div>
         )}
       />
+
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Take a Picture</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            width="100%"
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={capture}>
+            Capture
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
-  )
-}
+  );
+};
+
+export default WebCam;
