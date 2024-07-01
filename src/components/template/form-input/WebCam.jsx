@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 import { useFormContext, Controller } from 'react-hook-form';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
 // import './styles.scss'; // Pastikan untuk mengimpor file gaya Anda
 
 const CaptureImageInput = ({ name }) => {
@@ -49,8 +49,8 @@ const CaptureImageInput = ({ name }) => {
       />
 
       {showModal && (
-        <div className="modal fade show d-block" tabIndex="-1" role="dialog" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
-          <div className="modal-dialog modal-fullscreen-mobile" role="document">
+        <div className="modal fade show d-block modal-fullscreen-mobile" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-body">
                 <div className="webcam-container">

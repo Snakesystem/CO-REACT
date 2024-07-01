@@ -104,10 +104,19 @@
   margin: 0 !important;
 }
 
+/* styles.scss */
+// @import '~bootstrap/scss/bootstrap';
 
 @media (max-width: 768px) {
   .modal-fullscreen-mobile .modal-content {
-    height: 90vh;
+    height: 95vh;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .modal-fullscreen-mobile.modal {
+    padding: 0 !important;
   }
 
   .webcam-container {
@@ -118,10 +127,21 @@
 
   .webcam-container video {
     width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
+    height: 100%;
     object-fit: contain;
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-body {
+    overflow-y: hidden; /* Prevent scrolling */
   }
 
   .modal-footer {
@@ -141,6 +161,7 @@
     border: none;
   }
 }
+
 
 @keyframes l12 {
   100% {
