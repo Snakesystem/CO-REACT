@@ -34,8 +34,12 @@ const SweetAlertProvider = ({ children }) => {
     });
   };
 
+  const closeAlert = () => {
+    SweetAlert.close();
+  };
+
   return (
-    <SweetAlertContext.Provider value={{ showAlert }}>
+    <SweetAlertContext.Provider value={{ showAlert, closeAlert }}>
       {children}
     </SweetAlertContext.Provider>
   );

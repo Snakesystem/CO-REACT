@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useSweetAlert } from '../../../hooks/useSweetAlert';
 
-const VideoCam = ({webcamRef, videoConstraints, toggleFacingMode}) => {
+const VideoCam = ({webcamRef, videoConstraints}) => {
     return (
         <div className="swal-cover">
             <div className="cover-top"></div>
@@ -21,7 +21,7 @@ const VideoCam = ({webcamRef, videoConstraints, toggleFacingMode}) => {
                     <button type="button" className="btn btn-primary me-2 webcam-button" >
                     <i className="bi bi-camera"></i>
                     </button>
-                    <button type="button" className="btn btn-secondary webcam-button" onClick={toggleFacingMode}>
+                    <button type="button" className="btn btn-secondary webcam-button">
                     <i className="bi bi-arrow-repeat"></i>
                     </button>
                     <button type="button" className="btn btn-danger webcam-button">
@@ -41,7 +41,7 @@ export default function WebCam() {
     const [facingMode, setFacingMode] = useState('user');
     const [showPreview, setShowPreview] = useState(false);
     const MySwal = withReactContent(Swal);
-    const { showAlert } = useSweetAlert();
+    const { showAlert, closeAlert } = useSweetAlert();
 
     const { control, setValue } = useFormContext();
 
@@ -57,13 +57,37 @@ export default function WebCam() {
 
     const openCamera = () => {
         showAlert({
-            html: <VideoCam webcamRef={webcamRef} videoConstraints={videoConstraints} toggleFacingMode={toggleFacingMode}/>,
+            html: <div className="swal-cover">
+            <div className="cover-top"></div>
+                <div className="webcam-container">
+                <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={videoConstraints}
+                    className={`webcam-video`}
+                />
+                <div className="webcam-controls">
+                    <button type="button" className="btn btn-primary me-2 webcam-button" >
+                    <i className="bi bi-camera"></i>
+                    </button>
+                    <button type="button" className="btn btn-secondary webcam-button" onClick={toggleFacingMode}>
+                    <i className="bi bi-arrow-repeat"></i>
+                    </button>
+                    <button type="button" className="btn btn-danger webcam-button" onClick={closeAlert}>
+                    <i className="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                </div>
+            <div className="cover-bottom"></div>
+        </div>,
             allowOutsideClick: false,
             showConfirmButton: false,
             showCancelButton: false
-        })
+        }, 'xl',
+      'default-popup-background',
+      'default-backdrop');
     }
-
   return (
     <div className="form-group mb-3">
       <button type="button" className='btn btn-primary' onClick={openCamera}><i className="bi bi-camera"></i></button>
