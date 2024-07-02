@@ -43,7 +43,6 @@ export default function DataPendukung() {
           </div>
         </div>
 
-        {/* <button type="btton" onClick={deleteGambar} className="btn btn-primary">Hapus</button> */}
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </FormProvider>

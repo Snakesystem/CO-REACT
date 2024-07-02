@@ -7,7 +7,7 @@ const ModalWebcam = (props) => {
   const { capturedImage, extentions, facingMode, webcamRef, handleRetake, handleClose, uploadImage, capture, toggleFacingMode } = props;
 
   return (
-    <div className={`modal show fade d-block modal-fullscreen-mobile`} tabIndex="-1" role="dialog">
+    <div className="modal show fade d-block modal-fullscreen-mobile" tabIndex="-1" role="dialog">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-body">
@@ -17,7 +17,13 @@ const ModalWebcam = (props) => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat={extentions}
-                videoConstraints={{ facingMode }}
+                videoConstraints={
+                  {
+                    width: 480,
+                    height: 640,
+                    facingMode: facingMode
+                  }
+                }
                 className="webcam-video"
               />
               )}
@@ -110,7 +116,18 @@ const WebCamPro = (props) => {
     <div>
       <div style={{cursor: 'pointer'}} className='bi bi-camera img-fluid fs-3 text-primary' onClick={handleShow}/>
 
-      {showModal && <ModalWebcam facingMode={facingMode} webcamRef={webcamRef} capture={capture} toggleFacingMode={toggleFacingMode} handleClose={handleClose} handleRetake={handleRetake} uploadImage={uploadImage} capturedImage={capturedImage} extentions={extentions}  />}
+      {showModal && 
+        <ModalWebcam 
+          facingMode={facingMode} 
+          webcamRef={webcamRef} 
+          capture={capture} 
+          toggleFacingMode={toggleFacingMode} 
+          handleClose={handleClose} 
+          handleRetake={handleRetake} 
+          uploadImage={uploadImage} 
+          capturedImage={capturedImage} 
+          extentions={extentions}  
+        />}
     </div>
   );
 };
