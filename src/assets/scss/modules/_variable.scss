@@ -56,11 +56,20 @@ $swal-xxl: 85%;
 $swal-xxxl: 90%;
 $swal-fullscreen: 100%;
 
-// Variabel untuk breakpoints
-$breakpoint-xs: 360px;
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
-$breakpoint-xl: 1200px;
-$breakpoint-xxl: 1920px;
-$breakpoint-xxxl: 2400px;
+// Variabel untuk breakpoints width
+$breakpoint-width-xs: 360px;
+$breakpoint-width-sm: 576px;
+$breakpoint-width-md: 768px;
+$breakpoint-width-lg: 992px;
+$breakpoint-width-xl: 1390px;
+$breakpoint-width-xxl: 1920px;
+$breakpoint-width-xxxl: 2400px;
+
+// Variabel untuk breakpoints height
+$breakpoint-height-xs: 260px;
+$breakpoint-height-sm: 476px;
+$breakpoint-height-md: 768px;
+$breakpoint-height-lg: 992px;
+$breakpoint-height-xl: 1300px;
+$breakpoint-height-xxl: 1920px;
+$breakpoint-height-xxxl: 2400px;

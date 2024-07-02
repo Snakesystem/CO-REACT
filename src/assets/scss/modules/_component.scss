@@ -1,0 +1,25 @@
+@use 'function' as function;
+@use 'variable' as var;
+
+/* Not Found style */
+.swal2-notfound {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .swal2-actions {
+        margin-top: -20rem !important;
+    }
+}
+
+.swal2-html-container {
+    .swal2-image-notfound {
+        @include function.breakpoint-width(50%, 100%, 100%, 100%, 100%, 70%, 40%, 30%);
+        height: 30% !important;
+        object-fit: contain !important;
+    }
+}

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmyreactapp=self.webpackChunkmyreactapp||[]).push([[797],{1797:(t,e,c)=>{c.r(e),c.d(e,{default:()=>r});c(5043);var n=c(698),s=c(579);function r(){const{showAlert:t}=(0,n.c)();return(0,s.jsxs)("div",{children:[(0,s.jsx)("h1",{children:"About"}),(0,s.jsx)("button",{className:"btn btn-primary",onClick:()=>{t({title:"Title",text:"Text",icon:"success",confirmButtonText:"Ok"},"md")},children:"Pencet"})]})}}}]);
-//# sourceMappingURL=797.9895a7e4.chunk.js.map

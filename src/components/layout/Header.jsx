@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { appRoutes } from '../../app/App'
 import { Container, Nav, Navbar } from 'react-bootstrap'

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ErrorMessage, LoadingSkeleton, createOptions } from '../../../utils/utility';
@@ -77,7 +77,7 @@ const RadioCheckBox = (props) => {
 
     return (
         <div className="mb-3">
-            <div class="form-check form-check-inline">
+            <div className="form-check form-check-inline">
             <Controller
                 name={ngModel}
                 control={control}

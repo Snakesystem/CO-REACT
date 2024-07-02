@@ -93,7 +93,7 @@ const NotFound = () => {
 
   useEffect(() => {
     showAlert({
-      html: <img src='/img/404.svg' alt='404'/>,
+      html: <img className="swal2-image-notfound" src='/img/404.svg' alt='404'/>,
       confirmButtonText: 'Reload',
       showDenyButton: true,
       denyButtonText: "Back to Home"

@@ -6,7 +6,6 @@ import { appRoutes } from "../App";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useForm } from "react-hook-form";
 import { useApi } from "../../hooks/useApi";
-import TypeIt from "typeit-react";
 import { useSweetAlert } from "../../hooks/useSweetAlert";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSchema } from "../../hooks/useSchema";
@@ -27,8 +26,7 @@ const Home = memo(function Home() {
     mode: "all", // this is mode form validation || "onSubmit" || "onChange" || "all"
   });
 
-  const { handleSubmit, formState } = loginForm;
-  const { errors, isValid } = formState;
+  const { handleSubmit } = loginForm;
   const { postRequest } = useApi()
   const { showAlert } = useSweetAlert()
 
@@ -36,20 +34,20 @@ const Home = memo(function Home() {
     try {
       const result = await postRequest(`cif/login`, data);
       if(!result.result) {
-        showAlert({
+        await showAlert({
           title: result.response_message,
           text: `Please check your email and password!`,
           icon: 'warning',
           confirmButtonText: 'Ok'
         }, 'xs');
       } else {
-        showAlert({
+        await showAlert({
           title: result.response_message,
           text: `Please check your email and password!`,
           icon: 'success',
           confirmButtonText: 'Ok'
         }, 'xs');
-          navigate(appRoutes.HOME)
+        navigate(`${appRoutes.CIF}/datapribadi`)
       }
     } catch (error) {
       showAlert({
@@ -60,8 +58,6 @@ const Home = memo(function Home() {
       }, 'xs');
     }
   }
-
-  const image = localStorage.getItem('camera');
 
   return (
     <section className="page-home">
@@ -78,7 +74,6 @@ const Home = memo(function Home() {
                 <SwiperSlide className="d-flex align-items-center justify-content-center">
                   {/* <div className="col-12 ms-auto card card-background card-background-mask-info">
                   </div> */}
-                  <img src={image} style={{width: '100%'}} alt=""/>
                   {/* <p className="text-swiper"><TypeIt>{t('REGIS.slider1')}</TypeIt></p> */}
                 </SwiperSlide>
                 {/* <SwiperSlide className="d-flex align-items-center justify-content-center">

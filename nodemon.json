@@ -1,7 +1,0 @@
-{
-    "watch": ["src", "public"],
-    "ext": "js,jsx,ts,tsx,css,html",
-    "ignore": ["node_modules"],
-    "exec": "node main.js"
-}
-  

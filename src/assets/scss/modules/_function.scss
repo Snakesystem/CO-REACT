@@ -168,34 +168,66 @@
     }
 }
 
-@mixin swal-responsive($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
+@mixin breakpoint-width($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
     width: $size !important;
     
-    @media (min-width: var.$breakpoint-xs) {
+    @media (min-width: var.$breakpoint-width-xs) {
       width: $xs !important;
     }
     
-    @media (min-width: var.$breakpoint-sm) { 
+    @media (min-width: var.$breakpoint-width-sm) { 
       width: $small !important;
     }
     
-    @media (min-width: var.$breakpoint-md) {
+    @media (min-width: var.$breakpoint-width-md) {
       width: $medium !important;
     }
     
-    @media (min-width: var.$breakpoint-lg) {
+    @media (min-width: var.$breakpoint-width-lg) {
       width: $large !important;
     }
     
-    @media (min-width: var.$breakpoint-xl) {
+    @media (min-width: var.$breakpoint-width-xl) {
       width: $xlarge !important;
     }
     
-    @media (min-width: var.$breakpoint-xxl) {
+    @media (min-width: var.$breakpoint-width-xxl) {
       width: $xxlarge !important;
     }
   
-    @media (min-width: var.$breakpoint-xxxl) {
+    @media (min-width: var.$breakpoint-width-xxxl) {
       width: $xxxlarge !important;
+    }
+}
+
+@mixin breakpoint-height($size, $xs, $small, $medium, $large, $xlarge, $xxlarge, $xxxlarge) {
+    height: $size !important;
+    
+    @media (min-height: var.$breakpoint-height-xs) {
+      height: $xs !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-sm) { 
+      height: $small !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-md) {
+      height: $medium !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-lg) {
+      height: $large !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-xl) {
+      height: $xlarge !important;
+    }
+    
+    @media (min-height: var.$breakpoint-height-xxl) {
+      height: $xxlarge !important;
+    }
+  
+    @media (min-height: var.$breakpoint-height-xxxl) {
+      height: $xxxlarge !important;
     }
 }

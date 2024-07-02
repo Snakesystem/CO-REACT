@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types';
 import { Controller, useFormContext } from 'react-hook-form';
 import { ErrorMessage } from '../../../utils/utility';
@@ -43,7 +43,7 @@ export default function InputTextField(props) {
             </span>
           </div>
           <ErrorMessage ngModel={ngModel} errors={errors} />
-          </div> : <div class="alert alert-danger" role="alert">
+          </div> : <div className="alert alert-danger" role="alert">
                 Input type not found!
               </div>
         )}

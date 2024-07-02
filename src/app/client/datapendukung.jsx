@@ -30,20 +30,17 @@ export default function DataPendukung() {
           <div className="col-12">
             <div className="row">
               <div className="col-md-4">
-                <InputFileField ngModel="webcam" fileType="image" ext="png" label="Webcam" />
-                {/* <CobaType name="captureImage"/> */}
+                <InputFileField ngModel="webcam" fileType="image" ext="png" label="Webcam"/>
               </div>
               <div className="col-md-4">
-                <InputFileField ngModel="IDCardFile" fileType="image" ext="png" label="ID Card" />
+                {/* <InputFileUpload/> */}
               </div>
               <div className="col-md-4">
-              <InputFileField ngModel="SignatureFile" fileType="image" ext="png" label="Signature" />
+                {/* <InputFileUpload/> */}
               </div>
             </div>
           </div>
         </div>
-
-        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </FormProvider>
   )

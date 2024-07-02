@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 import { LifeLine } from 'react-loading-indicators';
 import Skeleton from 'react-loading-skeleton';
 import ErrorBoundary from '../components/template/slice/ErrorBoundary';

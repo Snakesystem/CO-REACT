@@ -1,6 +1,4 @@
-// src/LoadingErrorContext.js
-
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const LoadingApiContext = createContext();
 
@@ -16,9 +14,9 @@ export const LoadingApiProvider = ({ children }) => {
   const clearError = () => setError(null);
 
   return (
-    <LoadingApiContext.Provider
-      value={{ isLoading, error, startLoading, stopLoading, setErrorMsg, clearError }}
-    >
+    <LoadingApiContext.Provider value={
+      { isLoading, error, startLoading, stopLoading, setErrorMsg, clearError }
+    } >
       {children}
     </LoadingApiContext.Provider>
   );

@@ -63,41 +63,41 @@
 }
 
 .swal2-xxs {
-  @include function.swal-responsive(var.$swal-xxs, 95%, 90%, 50%, var.$swal-xxs, var.$swal-xxs, 15%, 10%);
+  @include function.breakpoint-width(var.$swal-xxs, 95%, 90%, 50%, var.$swal-xxs, var.$swal-xxs, 15%, 10%);
 }
 
 .swal2-xs {
-  @include function.swal-responsive(var.$swal-xs, 95%, 75%, 60%, 45%, var.$swal-xxs, var.$swal-xxs, 15%);
+  @include function.breakpoint-width(var.$swal-xs, 95%, 75%, 60%, 45%, var.$swal-xxs, var.$swal-xxs, 15%);
 }
 
 .swal2-sm {
-  @include function.swal-responsive(var.$swal-sm, 95%, 75%, 60%, 50%, 30%, var.$swal-xxs, var.$swal-xxs);
+  @include function.breakpoint-width(var.$swal-sm, 95%, 75%, 60%, 50%, 30%, var.$swal-xxs, var.$swal-xxs);
 }
 
 .swal2-md {
-  @include function.swal-responsive(var.$swal-md, 95%, 75%, 60%, 50%, 40%, var.$swal-xs, var.$swal-xs);
+  @include function.breakpoint-width(var.$swal-md, 95%, 75%, 60%, 50%, 40%, var.$swal-xs, var.$swal-xs);
 }
 
 .swal2-lg {
-  @include function.swal-responsive(var.$swal-lg, 95%, 75%, 60%, 60%, 40%, var.$swal-md, var.$swal-md);
+  @include function.breakpoint-width(var.$swal-lg, 95%, 75%, 60%, 60%, 40%, var.$swal-md, var.$swal-md);
 }
 
 .swal2-xl {
-  @include function.swal-responsive(var.$swal-xl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-lg, var.$swal-lg);
+  @include function.breakpoint-width(var.$swal-xl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-lg, var.$swal-lg);
 }
 
 .swal2-xxl {
-  @include function.swal-responsive(var.$swal-xxl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl);
+  @include function.breakpoint-width(var.$swal-xxl, 95%, 75%, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl, var.$swal-xl);
 }
 
 .swal2-xxxl {
-  @include function.swal-responsive(var.$swal-xxxl, 95%, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl);
+  @include function.breakpoint-width(var.$swal-xxxl, 95%, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl, var.$swal-xxl);
 }
 
 .swal2-fullscreen {
   width: var.$swal-fullscreen !important;
   // @include function.breakpoint-swal-height(0, 0, 0, 0, 0, $option: true, $value: 0);
-  height: 95vh !important;
+  height: 100vh !important;
   max-width: none !important;
   top: 0 !important;
   left: 0 !important;
@@ -145,6 +145,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
+      transform: rotate(0deg);
     }
     .webcam-image {
       width: 100%;
@@ -236,6 +237,7 @@
     }
   }
 }
+
 
 @keyframes l12 {
   100% {

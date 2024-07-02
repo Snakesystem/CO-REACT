@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useTheme } from './useTheme';
@@ -34,12 +34,8 @@ const SweetAlertProvider = ({ children }) => {
     });
   };
 
-  const closeAlert = () => {
-    SweetAlert.close();
-  };
-
   return (
-    <SweetAlertContext.Provider value={{ showAlert, closeAlert }}>
+    <SweetAlertContext.Provider value={{ showAlert }}>
       {children}
     </SweetAlertContext.Provider>
   );

@@ -1,11 +1,10 @@
-import React from 'react'
 import { ErrorMessage } from '../../../utils/utility'
 import { Controller, useFormContext } from 'react-hook-form';
 import PropTypes from 'prop-types';
 
 export default function InputNumberField(props) {
 
-  const { ngModel, placeholder, label, type="text" } = props;
+  const { ngModel, placeholder, label } = props;
 
   const { control, formState } = useFormContext();
   const { errors } = formState;
@@ -25,7 +24,7 @@ export default function InputNumberField(props) {
                 id={ngModel}
                 className={`form-control ${errors[ngModel] ? 'is-invalid' : ''}`}
                 {...field}
-                placeholder="81xxxxxxxxx"
+                placeholder={placeholder}
               />
               <ErrorMessage ngModel={ngModel} errors={errors} />
           </div>

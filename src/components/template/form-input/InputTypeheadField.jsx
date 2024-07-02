@@ -1,5 +1,5 @@
 // src/AsyncSelectForm.js
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Controller, useFormContext } from 'react-hook-form';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';

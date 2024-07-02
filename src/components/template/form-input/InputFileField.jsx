@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form';
-import WebCamPro from './WebCamPro';
+import WebcamPro from '../slice/WebcamPro';
 
 const UploadFile = (props) => {
 
@@ -64,7 +64,7 @@ export default function InputFileField(props) {
                     </div>
                     }
                     <div className="text-center d-flex justify-content-around">
-                        <WebCamPro extentions={fileExt} screenShot={setUploadFile} />
+                        <WebcamPro extentions={fileExt} screenShot={setUploadFile} />
                         <UploadFile fileExt={fileExt} setUploadFile={setUploadFile} />
                     </div>
                 </div>

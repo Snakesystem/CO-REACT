@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense, createRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../App";
 import { FormProvider, useForm } from "react-hook-form";
 import { useApi } from "../../hooks/useApi";
@@ -12,6 +12,8 @@ import InputNumberField from "../../components/template/form-input/InputNumberFi
 import { DevTool } from "@hookform/devtools";
 // import ReCAPTCHA from "react-google-recaptcha";
 import { useSchema } from "../../hooks/useSchema";
+import { useLoadingApi } from "../../hooks/useLoadingApi";
+import { useSweetAlert } from "../../hooks/useSweetAlert";
 
 function Register() {
   const [prep, setPrep] = useState(3);
@@ -112,6 +114,11 @@ const Questions = ({ changePrep }) => {
 
 const JoinUs = ({ changePrep }) => {
 
+  const { postRequest } = useApi();
+  const { isLoading } = useLoadingApi();
+  const { showAlert } = useSweetAlert();
+  const navigate = useNavigate();
+
   const recaptchaRef = createRef();
   const { getRequest } = useApi();
   const [t, i18n] = useTranslation('lang');
@@ -140,8 +147,8 @@ const JoinUs = ({ changePrep }) => {
     mode: "all", // this is mode form validation || "onSubmit" || "onChange" || "all"
   })
 
-  const { handleSubmit, formState, control, setValue  } = formDataPribadi;
-  const { errors, isValid } = formState;
+  const { handleSubmit, formState, control  } = formDataPribadi;
+  const { isValid } = formState;
 
   useEffect(() => {
     const getRDN = async () => {
@@ -155,17 +162,49 @@ const JoinUs = ({ changePrep }) => {
     getRDN();
   }, []);
 
-  const submitRegistrasi = (data) => {
-    console.log(data)
-    console.log({ MobilePhone: createFormatPhoneId(data.MobilePhone)});
+  const submitRegistrasi = async (data) => {
+    const validData = {
+      Email: data.Email,
+      Fullname: data.Fullname,
+      MobilePhone: createFormatPhoneId(data.MobilePhone),
+      BankAccountNumber: data.BankAccountNumber,
+      BankAccountHolder: data.BankAccountHolder,
+      QuestionRDN: data.QuestionRDN,
+      Sales: data.Sales,
+      BankName: data.BankName,
+      Password: data.Password,
+    }
+    try {
+      const result = await postRequest(`cif/registrasi`, validData);
+      if(result.response_code === "00") {
+        await showAlert({
+          title: result.response_message,
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        }, 'xs');
+        navigate(appRoutes.HOME)
+      } else {
+        await showAlert({
+          title: result.response_message,
+          icon: 'success',
+          text: `Please check your email and password!`,
+          confirmButtonText: 'Ok'
+        }, 'xs');
+      }
+    } catch (error) {
+      showAlert({
+        title: <h1>Oopsss !!!</h1>,
+        text: `Please check connection and try again!`,
+        icon: 'Error',
+        confirmButtonText: 'Ok'
+      }, 'xs');
+    }
   }
 
   const handleCaptcha = () => {
     const hasil = recaptchaRef.current.getValue();
     console.log(hasil)
   }
-
-  console.log(errors)
 
   return (
     <FormProvider {...formDataPribadi}>
@@ -181,7 +220,7 @@ const JoinUs = ({ changePrep }) => {
                 <SelectDynamic ngModel="QuestionRDN" label={t("CIF.bankrdn")} options={rdn} optionKey="code" valueKey="number" optionValue="description" />
                 <InputTextField type="text" ngModel="Fullname" label={t("CIF.fullname")} placeholder="" />
                 <InputTextField type="text" ngModel="Email" label={t("CIF.email")} placeholder="" />
-                <InputNumberField type="text" ngModel="MobilePhone" label={t("CIF.contactmobilephone")} placeholder="" />
+                <InputNumberField type="text" ngModel="MobilePhone" label={t("CIF.contactmobilephone")} placeholder="81xxxxxxx" />
                 <SelectDynamic ngModel="Sales" label={t("CIF.sales")} options={Sales} optionKey="SalesNID" optionValue="SalesName" valueKey="number" />
               </div>
               <div className="col-md-6">
