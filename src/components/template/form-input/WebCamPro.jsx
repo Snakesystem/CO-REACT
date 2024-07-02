@@ -17,13 +17,7 @@ const ModalWebcam = (props) => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat={extentions}
-                videoConstraints={
-                  {
-                    width: 480,
-                    height: 640,
-                    facingMode: facingMode
-                  }
-                }
+                videoConstraints={{ facingMode }}
                 className="webcam-video"
               />
               )}
